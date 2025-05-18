@@ -8,7 +8,7 @@ export default function EducationSection() {
   return (
     <Section id="education">
       <SectionTitle>Education</SectionTitle>
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="space-y-8 max-w-3xl mx-auto"> {/* Changed from grid to single column, centered */}
         {education.map((edu, index) => (
           <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideUp" style={{ animationDelay: `${index * 0.2}s` }}>
             <CardHeader>
