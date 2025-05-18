@@ -1,7 +1,8 @@
+
 "use client";
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { useEffect } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useFormStatus } from 'react-dom';
 import Link from 'next/link';
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
@@ -28,7 +29,7 @@ function SubmitButton() {
 export default function ContactSection() {
   const { toast } = useToast();
   const initialState: ContactFormState = { message: '', issues: [], fields: {}, success: false };
-  const [state, formAction] = useFormState(submitContactForm, initialState);
+  const [state, formAction] = useActionState(submitContactForm, initialState);
 
   useEffect(() => {
     if (state.message) {
