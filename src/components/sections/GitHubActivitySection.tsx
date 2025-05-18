@@ -1,11 +1,14 @@
 
+'use client'; // Make this a client component
+
 import Link from 'next/link';
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import AnimatedStatCard from '@/components/cards/AnimatedStatCard'; // Import the new component
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'; // Keep for recent commits card
 import { gitHubActivityData } from '@/lib/data';
-import { Github, Star, GitFork, Users, Activity, ExternalLink } from 'lucide-react';
+import { Github, Star, GitFork, Activity, ExternalLink } from 'lucide-react';
 
 export default function GitHubActivitySection() {
   const { username, totalRepositories, starsReceived, forks, contributionsLastYear, profileUrl, recentCommits } = gitHubActivityData;
@@ -23,20 +26,18 @@ export default function GitHubActivitySection() {
       
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {stats.map((stat, index) => (
-          <Card key={index} className="text-center animate-slideUp shadow-lg" style={{ animationDelay: `${index * 0.1}s` }}>
-            <CardHeader className="pb-2">
-              <stat.icon className="h-10 w-10 mx-auto text-accent mb-2" />
-              <CardTitle className="text-3xl font-bold text-primary">{stat.value}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">{stat.label}</p>
-            </CardContent>
-          </Card>
+          <AnimatedStatCard 
+            key={stat.label} 
+            label={stat.label} 
+            value={stat.value} 
+            icon={stat.icon} 
+            animationDelay={`${index * 0.1}s`} 
+          />
         ))}
       </div>
 
       {recentCommits && recentCommits.length > 0 && (
-        <Card className="mb-12 animate-slideUp shadow-lg" style={{ animationDelay: '0.4s' }}>
+        <Card className="mb-12 animate-slideUp shadow-lg" style={{ animationDelay: `${(stats.length) * 0.1 + 0.1}s` }}> {/* Adjust delay for this card */}
           <CardHeader>
             <CardTitle className="text-xl text-primary">Recent Commits</CardTitle>
           </CardHeader>
@@ -55,7 +56,7 @@ export default function GitHubActivitySection() {
         </Card>
       )}
 
-      <div className="text-center animate-slideUp" style={{ animationDelay: '0.6s' }}>
+      <div className="text-center animate-slideUp" style={{ animationDelay: `${(stats.length) * 0.1 + 0.2}s` }}> {/* Adjust delay for this button */}
         <Button asChild size="lg" className="bg-primary hover:bg-primary/90">
           <Link href={profileUrl} target="_blank" rel="noopener noreferrer">
             <Github className="mr-2 h-5 w-5" />
