@@ -129,7 +129,7 @@ export const projects: Project[] = [
     id: "proj1",
     title: "E-commerce Platform",
     description: "A full-featured e-commerce website with product listings, cart functionality, user authentication, and an admin panel for managing inventory and orders. This project involved a deep dive into user experience design, secure payment gateway integration, and efficient state management for a seamless shopping experience. Scalability was a key consideration, leading to the adoption of microservices for certain backend functionalities.",
-    thumbnailUrl: "https://placehold.co/600x400.png",
+    thumbnailUrl: "https://images.unsplash.com/photo-1707553513157-4dfd44e857e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxFJTIwY29tbWVyY2UlMjBwbGF0Zm9ybXxlbnwwfHx8fDE3NDc1NzcyNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
     thumbnailAiHint: "e-commerce products",
     techStack: [skills.frontend[0], skills.frontend[1], skills.backend[0], skills.databases[0]],
     githubUrl: "https://github.com/yourusername/ecommerce-platform",
@@ -307,4 +307,5 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
+
 
