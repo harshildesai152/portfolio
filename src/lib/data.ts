@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Quote } from 'lucide-react';
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award } from 'lucide-react';
 
 export type Skill = {
   name: string;
@@ -273,7 +273,7 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "#", // Example: https://www.scrum.org/your-badge-url-3
+    credentialUrl: "https://www.scrum.org/your-badge-url-3",
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
@@ -334,5 +334,3 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
-
-    
