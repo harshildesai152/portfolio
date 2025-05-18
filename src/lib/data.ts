@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Quote, GitFork, Star } from 'lucide-react';
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Quote, GitFork, Star, CalendarDays, Award } from 'lucide-react';
 
 export type Skill = {
   name: string;
@@ -23,9 +23,9 @@ export type Experience = {
   role: string;
   company: string;
   duration: string;
+  location?: string; // Added location
   responsibilities: string[];
-  logoUrl?: string;
-  logoAiHint?: string;
+  // logoUrl and logoAiHint removed
 };
 
 export type EducationItem = {
@@ -162,29 +162,40 @@ export const projects: Project[] = [
 
 export const experiences: Experience[] = [
   {
-    role: "Software Engineer",
-    company: "Tech Solutions Inc.",
+    role: "Senior Frontend Developer", // Updated role to match image
+    company: "Tech Innovations Inc.",
     duration: "Jan 2022 - Present",
+    location: "San Francisco, CA", // Added location
     responsibilities: [
-      "Developed and maintained scalable web applications using React, Node.js, and MongoDB.",
-      "Collaborated with cross-functional teams to define, design, and ship new features.",
-      "Improved application performance by 20% through code optimization and database query tuning.",
-      "Implemented CI/CD pipelines for automated testing and deployment.",
+      "Lead a team of 5 developers in building modern web applications using React, TypeScript, and NextJS.", // Matched OCR
+      "Reduced page load time by 40% through performance optimizations and code splitting.", // Matched OCR
+      "Implemented CI/CD pipelines that decreased deployment time by 60%.", // Matched OCR
+      "Mentored junior developers and conducted code reviews to ensure quality standards.", // Matched OCR
     ],
-    logoUrl: "https://placehold.co/100x100.png",
-    logoAiHint: "tech logo",
   },
   {
-    role: "Junior Developer Intern",
-    company: "Innovate Startups Co.",
-    duration: "Jun 2021 - Dec 2021",
+    role: "Full Stack Developer", // Matched OCR
+    company: "Digital Solutions Ltd.", // Matched OCR
+    duration: "Mar 2020 - Dec 2021", // Matched OCR
+    location: "Boston, MA", // Added location
     responsibilities: [
-      "Assisted senior developers in building and testing new software modules.",
-      "Contributed to frontend development tasks using HTML, CSS, and JavaScript.",
-      "Participated in agile development processes and daily stand-ups.",
+      "Developed and maintained RESTful APIs using Node.js and Express.", // Matched OCR
+      "Created responsive frontend interfaces with React and Material UI.", // Matched OCR (used Material UI from OCR)
+      "Implemented authentication and authorization using JWT and OAuth.", // Matched OCR
+      "Designed and managed MongoDB databases for multiple projects.", // Matched OCR
     ],
-    logoUrl: "https://placehold.co/100x100.png",
-    logoAiHint: "startup logo",
+  },
+  {
+    role: "Junior Web Developer", // Added from OCR
+    company: "StartUp Vision", // Added from OCR
+    duration: "Jun 2018 - Feb 2020", // Added from OCR
+    location: "Remote", // Added from OCR
+    responsibilities: [
+        "Collaborated with design and product teams to create user-friendly web interfaces.", // Added from OCR
+        "Maintained and updated existing codebases, fixing bugs and improving functionality.", // Added from OCR
+        "Assisted in implementing responsive designs and ensuring cross-browser compatibility.", // Added from OCR
+        "Participated in code reviews and team meetings to improve development processes." // Added from OCR
+    ],
   },
 ];
 

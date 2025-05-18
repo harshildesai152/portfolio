@@ -1,7 +1,7 @@
-import Image from 'next/image';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Experience } from '@/lib/data';
-import { Briefcase, CalendarDays } from 'lucide-react';
+import { Briefcase, CalendarDays, MapPin } from 'lucide-react';
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -10,34 +10,30 @@ interface ExperienceCardProps {
 
 export default function ExperienceCard({ experience, animationDelay = '0s' }: ExperienceCardProps) {
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideUp" style={{ animationDelay }}>
-      <CardHeader>
-        <div className="flex items-start space-x-4">
-          {experience.logoUrl && (
-            <Image 
-              src={experience.logoUrl} 
-              alt={`${experience.company} logo`} 
-              width={50} 
-              height={50} 
-              className="rounded-md border"
-              data-ai-hint={experience.logoAiHint}
-            />
-          )}
-          <div>
-            <CardTitle className="text-xl text-primary flex items-center">
-              <Briefcase className="h-5 w-5 mr-2 text-accent" />
-              {experience.role}
-            </CardTitle>
-            <CardDescription className="text-md text-muted-foreground">{experience.company}</CardDescription>
-            <p className="text-xs text-muted-foreground mt-1 flex items-center">
-              <CalendarDays className="h-3 w-3 mr-1" />
+    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideUp bg-card text-card-foreground w-full">
+      <CardHeader className="pb-3"> {/* Reduced padding bottom for header */}
+        {/* Logo removed as per new design */}
+        <div>
+          <CardTitle className="text-xl font-semibold text-primary mb-1"> {/* Role is primary focus */}
+            {experience.role}
+          </CardTitle>
+          <p className="text-md text-accent font-medium mb-2">{experience.company}</p> {/* Company with accent color */}
+          <div className="text-xs text-muted-foreground flex flex-col sm:flex-row sm:flex-wrap gap-x-4 gap-y-1 items-start">
+            <p className="flex items-center">
+              <CalendarDays className="h-3.5 w-3.5 mr-1.5 text-muted-foreground" /> 
               {experience.duration}
             </p>
+            {experience.location && (
+              <p className="flex items-center">
+                <MapPin className="h-3.5 w-3.5 mr-1.5 text-muted-foreground" /> 
+                {experience.location}
+              </p>
+            )}
           </div>
         </div>
       </CardHeader>
       <CardContent>
-        <ul className="list-disc list-inside space-y-2 text-foreground text-sm leading-relaxed">
+        <ul className="list-disc list-inside space-y-1.5 text-sm leading-relaxed text-card-foreground/90"> {/* Slightly muted responsibilities text */}
           {experience.responsibilities.map((resp, index) => (
             <li key={index}>{resp}</li>
           ))}
