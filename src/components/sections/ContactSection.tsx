@@ -14,14 +14,20 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import { submitContactForm, type ContactFormState } from '@/actions/contact';
 import { socialLinks, contactDetails } from '@/lib/data';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin, ArrowRight } from 'lucide-react';
 
 
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button type="submit" disabled={pending} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-      {pending ? 'Sending...' : 'Send Message'}
+    <Button 
+      type="submit" 
+      disabled={pending} 
+      variant="link" // Changed variant to link
+      className="text-2xl font-semibold text-primary hover:text-accent p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 group mt-4" // Adjusted styling
+    >
+      {pending ? 'Sending...' : 'Submit'}
+      <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
     </Button>
   );
 }
@@ -41,7 +47,7 @@ export default function ContactSection() {
       } else if (state.issues && state.issues.length > 0) {
          toast({
           title: "Error",
-          description: state.issues.join('\n') || state.message,
+          description: state.issues.join('\\n') || state.message,
           variant: "destructive",
         });
       } else if (!state.success && state.message) {
@@ -53,11 +59,22 @@ export default function ContactSection() {
       }
     }
   }, [state, toast]);
+  
+  const getFieldError = (fieldName: string) => {
+    if (state.issues && state.fields && state.fields[fieldName] !== undefined) {
+      const fieldSpecificIssue = state.issues.find(issue => 
+        issue.toLowerCase().includes(fieldName.replace(/([A-Z])/g, ' $1').toLowerCase().trim())
+      );
+      return fieldSpecificIssue;
+    }
+    return undefined;
+  };
+
 
   return (
     <Section id="contact">
       <SectionTitle>Get In Touch</SectionTitle>
-      <div className="grid md:grid-cols-2 gap-12">
+      <div className="grid md:grid-cols-2 gap-12 items-start"> {/* Added items-start */}
         <Card className="animate-slideUp shadow-lg" style={{ animationDelay: '0.2s' }}>
           <CardHeader>
             <CardTitle className="text-2xl text-primary">Contact Information</CardTitle>
@@ -102,30 +119,63 @@ export default function ContactSection() {
           </CardHeader>
           <CardContent>
             <form action={formAction} className="space-y-6">
-              <div>
-                <Label htmlFor="name" className="text-card-foreground">Full Name</Label>
-                <Input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  required 
-                  className="mt-1 bg-background focus:border-primary"
-                  defaultValue={state.fields?.name} 
-                />
-                {state.issues?.find(issue => issue.toLowerCase().includes('name')) && <p className="text-destructive text-sm mt-1">{state.issues.find(issue => issue.toLowerCase().includes('name'))}</p>}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <Label htmlFor="firstName" className="text-card-foreground">First Name</Label>
+                  <Input 
+                    type="text" 
+                    id="firstName" 
+                    name="firstName" 
+                    required 
+                    placeholder="First Name"
+                    className="mt-1 bg-input focus:border-primary"
+                    defaultValue={state.fields?.firstName} 
+                  />
+                  {getFieldError('firstName') && <p className="text-destructive text-sm mt-1">{getFieldError('firstName')}</p>}
+                </div>
+                <div>
+                  <Label htmlFor="lastName" className="text-card-foreground">Last Name</Label>
+                  <Input 
+                    type="text" 
+                    id="lastName" 
+                    name="lastName" 
+                    required 
+                    placeholder="Last Name"
+                    className="mt-1 bg-input focus:border-primary"
+                    defaultValue={state.fields?.lastName} 
+                  />
+                   {getFieldError('lastName') && <p className="text-destructive text-sm mt-1">{getFieldError('lastName')}</p>}
+                </div>
               </div>
-              <div>
-                <Label htmlFor="email" className="text-card-foreground">Email Address</Label>
-                <Input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  required 
-                  className="mt-1 bg-background focus:border-primary"
-                  defaultValue={state.fields?.email} 
-                />
-                 {state.issues?.find(issue => issue.toLowerCase().includes('email')) && <p className="text-destructive text-sm mt-1">{state.issues.find(issue => issue.toLowerCase().includes('email'))}</p>}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <Label htmlFor="email" className="text-card-foreground">Email Address</Label>
+                  <Input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    placeholder="Email Address"
+                    className="mt-1 bg-input focus:border-primary"
+                    defaultValue={state.fields?.email} 
+                  />
+                  {getFieldError('email') && <p className="text-destructive text-sm mt-1">{getFieldError('email')}</p>}
+                </div>
+                <div>
+                  <Label htmlFor="phone" className="text-card-foreground">Phone Number <span className="text-xs text-muted-foreground">(Optional)</span></Label>
+                  <Input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="Phone Number"
+                    className="mt-1 bg-input focus:border-primary"
+                    defaultValue={state.fields?.phone} 
+                  />
+                  {getFieldError('phone') && <p className="text-destructive text-sm mt-1">{getFieldError('phone')}</p>}
+                </div>
               </div>
+              
               <div>
                 <Label htmlFor="message" className="text-card-foreground">Message</Label>
                 <Textarea 
@@ -133,12 +183,15 @@ export default function ContactSection() {
                   name="message" 
                   rows={5} 
                   required 
-                  className="mt-1 bg-background focus:border-primary"
+                  placeholder="Write your message here!"
+                  className="mt-1 bg-input focus:border-primary min-h-[150px]"
                   defaultValue={state.fields?.message} 
                 />
-                {state.issues?.find(issue => issue.toLowerCase().includes('message')) && <p className="text-destructive text-sm mt-1">{state.issues.find(issue => issue.toLowerCase().includes('message'))}</p>}
+                {getFieldError('message') && <p className="text-destructive text-sm mt-1">{getFieldError('message')}</p>}
               </div>
-              <SubmitButton />
+              <div className="flex justify-start"> {/* Aligns submit button to the left */}
+                <SubmitButton />
+              </div>
             </form>
           </CardContent>
         </Card>

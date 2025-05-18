@@ -1,11 +1,18 @@
+
 "use server";
 
 import { z } from 'zod';
 
 const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  firstName: z.string().min(1, { message: "First name is required." }).max(50, { message: "First name must be 50 characters or less." }),
+  lastName: z.string().min(1, { message: "Last name is required." }).max(50, { message: "Last name must be 50 characters or less." }),
   email: z.string().email({ message: "Invalid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  phone: z.string().optional().refine(value => !value || /^[+]?[0-9\s-()]*$/.test(value), {
+    message: "Invalid phone number format."
+  }).refine(value => !value || value.replace(/\D/g, '').length <= 15, {
+    message: "Phone number is too long."
+  }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." }).max(1000, { message: "Message must be 1000 characters or less." }),
 });
 
 export type ContactFormState = {
@@ -24,10 +31,18 @@ export async function submitContactForm(
 
   if (!parsed.success) {
     const issues = parsed.error.issues.map((issue) => issue.message);
+    // Map field-specific errors to a more user-friendly format if needed
+    const fieldErrors: Record<string, string | undefined> = {};
+    parsed.error.issues.forEach(issue => {
+      if (issue.path.length > 0) {
+        fieldErrors[issue.path[0] as string] = issue.message;
+      }
+    });
+
     return {
-      message: "Invalid form data.",
+      message: "Invalid form data. Please check the fields below.",
       fields: formData as Record<string, string>,
-      issues,
+      issues, // You can pass specific field issues too if your UI handles them
       success: false,
     };
   }
