@@ -12,7 +12,10 @@ interface SkillCategoryProps {
 
 function SkillCategory({ title, skillsList, animationDelay = '0s' }: SkillCategoryProps) {
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideInLeft" style={{ animationDelay }}>
+    <Card 
+      className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideInLeft" 
+      style={{ animationDelay }}
+    >
       <CardHeader>
         <CardTitle className="text-xl text-primary">{title}</CardTitle>
       </CardHeader>
