@@ -10,6 +10,7 @@ export default {
   theme: {
   	extend: {
   		colors: {
+        tomato: 'hsl(9, 100%, 64%)', // #FF6347
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
