@@ -5,6 +5,7 @@ import SkillsSection from '@/components/sections/SkillsSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import EducationSection from '@/components/sections/EducationSection';
+import CertificationsSection from '@/components/sections/CertificationsSection'; // New import
 import GitHubActivitySection from '@/components/sections/GitHubActivitySection';
 import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import ContactSection from '@/components/sections/ContactSection';
@@ -18,6 +19,7 @@ export default function Home() {
       <ProjectsSection />
       <ExperienceSection />
       <EducationSection />
+      <CertificationsSection /> {/* Added new section */}
       <GitHubActivitySection />
       <TestimonialsSection />
       <ContactSection />

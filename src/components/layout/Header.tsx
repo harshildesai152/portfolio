@@ -14,6 +14,7 @@ const navItems = [
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
+  { href: '#certifications', label: 'Certifications' }, // New nav item
   { href: '#github-activity', label: 'GitHub' },
   { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
@@ -41,7 +42,7 @@ export default function Header() {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between"> {/* Removed fixed h-20, height now from padding */}
+        <div className="flex items-center justify-between">
           <Link
             href="/"
             className={`flex items-center space-x-2 font-bold text-primary hover:text-accent transition-all duration-500 ease-in-out ${
@@ -59,7 +60,6 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Desktop Navigation & Theme Toggle */}
           <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => (
               <Button
@@ -67,7 +67,7 @@ export default function Header() {
                 variant="ghost"
                 asChild
                 className={`text-foreground hover:bg-accent/10 hover:text-accent transition-colors ${
-                  isScrolled ? 'text-sm lg:text-base py-1 px-2' : 'text-base lg:text-lg py-2 px-3' // Adjusted padding for nav items
+                  isScrolled ? 'text-sm lg:text-base py-1 px-2' : 'text-base lg:text-lg py-2 px-3'
                 }`}
               >
                 <Link href={item.href}>{item.label}</Link>
@@ -85,7 +85,6 @@ export default function Header() {
             </Button>
           </nav>
 
-          {/* Mobile Navigation Toggle & Theme Toggle */}
           <div className="md:hidden flex items-center space-x-2">
              <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme"
                className={`text-primary hover:bg-accent/10 hover:text-accent transition-all duration-500 ease-in-out ${
