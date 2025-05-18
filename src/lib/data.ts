@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Quote, GitFork, Star, CalendarDays, Award } from 'lucide-react';
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Quote } from 'lucide-react';
 
 export type Skill = {
   name: string;
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     galleryImageUrls: [
       { url: 'https://placehold.co/600x400.png', aiHint: 'product detail page' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'user checkout process' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'admin dashboard interface' },
+      { url: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8RS1jb21tZXJjZSUyMCUyMHdlYnNpdGV8ZW58MHx8fHwxNzQ3NTgzNDM2fDA&ixlib=rb-4.1.0&q=80&w=1080', aiHint: 'admin dashboard interface' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'mobile responsive view' },
     ],
   },
@@ -175,6 +175,7 @@ export const projects: Project[] = [
     galleryImageUrls: [
       { url: 'https://placehold.co/600x400.png', aiHint: 'dark mode' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'mobile view' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'projects section' },
     ],
   },
   {
