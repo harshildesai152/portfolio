@@ -36,7 +36,7 @@ function SkillCategory({ title, skillsList, animationDelay = '0s' }: SkillCatego
 
 export default function SkillsSection() {
   return (
-    <Section id="skills" className="bg-blue-950 text-slate-200"> {/* Specific background for Skills */}
+    <Section id="skills" className="bg-[#0F121E] text-slate-200"> {/* Specific background for Skills */}
       <SectionTitle>Technical Skills</SectionTitle>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Card backgrounds and text colors are handled by Card component's theme variables */}
