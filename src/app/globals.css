@@ -116,9 +116,15 @@
 }
 
 @keyframes shakeY {
-  0%, 100% { transform: translateY(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateY(-3px); }
-  20%, 40%, 60%, 80% { transform: translateY(3px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-1.5px); /* Reduced intensity for smoother feel */
+  }
+  75% {
+    transform: translateY(1.5px); /* Reduced intensity for smoother feel */
+  }
 }
 
 @keyframes cursor-trail-fade-out {
