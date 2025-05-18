@@ -99,7 +99,7 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(50px) scale(0.95); } /* Increased Y, added scale */
+  from { opacity: 0; transform: translateY(50px) scale(0.95); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
@@ -129,7 +129,7 @@
 }
 
 .animate-slideUp {
-  animation: slideUp 0.7s ease-out forwards;
+  animation: slideUp 0.9s ease-out forwards; /* Changed duration from 0.7s to 0.9s */
 }
 
 .animate-shakeY {
