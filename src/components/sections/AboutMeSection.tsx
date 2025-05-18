@@ -32,7 +32,7 @@ export default function AboutMeSection() {
                 <p className="text-muted-foreground text-sm mb-1">{developerTitle}</p>
                 <p className="text-muted-foreground text-xs mb-4">{contactDetails.location}</p>
                 <div className="flex justify-center space-x-3 mb-6">
-                  {socialLinks.slice(0, 4).map((link) => ( 
+                  {socialLinks.slice(0, 4).map((link) => (
                     <a
                       key={link.name}
                       href={link.url}
@@ -87,7 +87,10 @@ export default function AboutMeSection() {
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 items-center">
                 {companyLogos.map((logo) => (
-                  <div key={logo.name} className="relative h-8 w-28 opacity-70 hover:opacity-100 transition-opacity">
+                  <div
+                    key={logo.name}
+                    className="relative flex items-center justify-center w-36 h-16 p-3 bg-card rounded-lg border border-border shadow-sm hover:shadow-lg hover:border-accent transition-all duration-300 opacity-75 hover:opacity-100 cursor-pointer"
+                  >
                     <Image
                       src={logo.url}
                       alt={logo.name}
