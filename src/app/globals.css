@@ -149,7 +149,5 @@
 }
 
 .animate-shakeY {
-  animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) both;
-  /* Apply animation on hover or a specific trigger if needed */
-  /* For continuous animation: animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) infinite both; */
+  animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) infinite both;
 }
