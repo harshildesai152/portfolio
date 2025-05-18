@@ -1,10 +1,12 @@
+
 "use client";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { Menu, CodeXml } from 'lucide-react';
+import { Menu, CodeXml, Sun, Moon } from 'lucide-react';
 import { developerName } from '@/lib/data';
 import { useState, useEffect } from 'react';
+import { useTheme } from '@/components/providers/ThemeProvider';
 
 const navItems = [
   { href: '#about', label: 'About' },
@@ -18,6 +20,7 @@ const navItems = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,17 +39,23 @@ export default function Header() {
             <span>{developerName.split(' ')[0]}<span className="text-accent">{developerName.split(' ')[1]}</span></span>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-2">
+          {/* Desktop Navigation & Theme Toggle */}
+          <nav className="hidden md:flex items-center space-x-2">
             {navItems.map((item) => (
               <Button key={item.label} variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent transition-colors">
                 <Link href={item.href}>{item.label}</Link>
               </Button>
             ))}
+            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="text-foreground hover:bg-accent/10 hover:text-accent transition-colors">
+              {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </Button>
           </nav>
 
-          {/* Mobile Navigation */}
-          <div className="md:hidden">
+          {/* Mobile Navigation Toggle & Theme Toggle */}
+          <div className="md:hidden flex items-center space-x-2">
+             <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="text-primary hover:bg-accent/10 hover:text-accent transition-colors">
+              {theme === 'light' ? <Moon className="h-5 w-5" /> : <Sun className="h-5 w-5" />}
+            </Button>
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
