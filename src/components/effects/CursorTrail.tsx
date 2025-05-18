@@ -76,7 +76,7 @@ export default function CursorTrail() {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute animate-cursor-trail bg-primary rounded-sm" // Changed from rounded-full
+          className="absolute animate-cursor-trail bg-accent rounded-sm" // Changed from bg-primary to bg-accent
           style={{
             left: particle.x,
             top: particle.y,
