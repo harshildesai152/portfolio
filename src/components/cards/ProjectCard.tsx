@@ -4,7 +4,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle, CardDescription }
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/lib/data';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, Eye } from 'lucide-react';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,13 +14,13 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, animationDelay = '0s' }: ProjectCardProps) {
   return (
     <Card className="overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full animate-slideUp" style={{ animationDelay }}>
-      <div className="relative w-full h-48 md:h-56 group"> {/* Added group here for the image hover effect if needed, or can rely on card hover */}
+      <div className="relative w-full h-48 md:h-56 group">
         <Image
           src={project.thumbnailUrl}
           alt={project.title}
           layout="fill"
           objectFit="cover"
-          className="transition-transform duration-500 group-hover:scale-105" // This will respond to the Card hover due to group context
+          className="transition-transform duration-500 group-hover:scale-105"
           data-ai-hint={project.thumbnailAiHint}
         />
       </div>
@@ -39,7 +39,12 @@ export default function ProjectCard({ project, animationDelay = '0s' }: ProjectC
           ))}
         </div>
       </CardContent>
-      <CardFooter className="flex justify-start space-x-3 pt-4 border-t">
+      <CardFooter className="flex flex-wrap justify-start gap-3 pt-4 border-t">
+        <Button variant="default" size="sm" asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <Link href={`/projects/${project.id}`}>
+            <Eye className="h-4 w-4 mr-2" /> View Details
+          </Link>
+        </Button>
         {project.githubUrl && (
           <Button variant="outline" size="sm" asChild className="border-primary text-primary hover:bg-primary/10">
             <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
@@ -48,7 +53,7 @@ export default function ProjectCard({ project, animationDelay = '0s' }: ProjectC
           </Button>
         )}
         {project.demoUrl && project.demoUrl !== "#" && (
-          <Button variant="default" size="sm" asChild className="bg-accent text-accent-foreground hover:bg-accent/90">
+          <Button variant="outline" size="sm" asChild className="border-accent text-accent hover:bg-accent/10">
             <Link href={project.demoUrl} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="h-4 w-4 mr-2" /> Live Demo
             </Link>
