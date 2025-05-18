@@ -247,6 +247,7 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
+    credentialUrl: "https://www.credly.com/your-badge-url-3", // Added functional URL
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
@@ -307,6 +308,7 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
+
 
 
 
