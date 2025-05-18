@@ -104,6 +104,20 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes backInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-200px) scale(0.7);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(10px) scale(1.05);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
 @keyframes slideInLeft {
   from {
     opacity: 0;
@@ -128,13 +142,20 @@
 }
 
 @keyframes cursor-trail-fade-out {
-  from {
-    opacity: 0.7;
-    transform: scale(1) translate(-50%, -50%);
+  0% { /* from */
+    background-color: hsl(var(--accent)); /* Start with accent color */
+    opacity: 0.8; /* Slightly more opaque start */
+    transform: scale(1.1) translate(-50%, -50%); /* Slightly larger start */
   }
-  to {
+  50% {
+    background-color: hsl(var(--primary)); /* Transition to primary color mid-way */
+    opacity: 0.4;
+    transform: scale(0.6) translate(-50%, -50%); /* Smaller than initial, larger than end */
+  }
+  100% { /* to */
+    background-color: hsl(var(--primary)); /* End with primary color (will be invisible due to opacity) */
     opacity: 0;
-    transform: scale(0.3) translate(-50%, -50%);
+    transform: scale(0.2) translate(-50%, -50%); /* Smallest and faded out */
   }
 }
 
@@ -148,6 +169,10 @@
 
 .animate-slideUp {
   animation: slideUp 0.9s ease-out forwards;
+}
+
+.animate-backInDown {
+  animation: backInDown 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 .animate-slideInLeft {
