@@ -10,7 +10,10 @@ interface ExperienceCardProps {
 
 export default function ExperienceCard({ experience, animationDelay = '0s' }: ExperienceCardProps) {
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideUp bg-card text-card-foreground w-full">
+    <Card 
+      className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideInLeft bg-card text-card-foreground w-full"
+      style={{ animationDelay }}
+    >
       <CardHeader className="pb-3"> {/* Reduced padding bottom for header */}
         {/* Logo removed as per new design */}
         <div>
