@@ -142,7 +142,7 @@ export const projects: Project[] = [
     demoUrl: "#",
     category: "Web Apps",
     galleryImageUrls: [
-      { url: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxFLWNvbW1lcmNlJTIwJTIwd2Vic2l0ZXxlbnwwfHx8fDE3NDc1ODM0MzZ8MA&ixlib=rb-4.1.0&q=80&w=1080', aiHint: 'product detail page' },
+      { url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxOXx8RS1jb21tZXJjZSUyMCUyMHdlYnNpdGV8ZW58MHx8fHwxNzQ3NTgzNDM2fDA&ixlib=rb-4.1.0&q=80&w=1080', aiHint: 'product detail page' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'user checkout process' },
       { url: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8RS1jb21tZXJjZSUyMCUyMHdlYnNpdGV8ZW58MHx8fHwxNzQ3NTgzNDM2fDA&ixlib=rb-4.1.0&q=80&w=1080', aiHint: 'admin dashboard interface' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'mobile responsive view' },
@@ -334,3 +334,4 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
+
