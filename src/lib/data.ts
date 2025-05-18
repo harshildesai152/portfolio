@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award } from 'lucide-react';
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Dribbble, Instagram, ArrowRight, Activity, Star, GitFork } from 'lucide-react';
 
 export type Skill = {
   name: string;
@@ -69,31 +69,34 @@ export type Testimonial = {
   avatarAiHint: string;
 };
 
+export type AboutStat = {
+  value: string;
+  label: string;
+};
+
+export type CompanyLogo = {
+  name: string;
+  url: string;
+  aiHint: string;
+};
+
 
 export const developerName = "Alex Johnson";
-export const developerTitle = "Software Engineer";
+export const developerTitle = "Software Engineer"; // Kept original title, image shows "Product Designer & Developer"
 export const developerTagline = "Building digital experiences that are intuitive, efficient, and impactful.";
 
 export const bio = {
-  introduction: "A passionate and results-oriented Software Engineer with 3+ years of experience in developing and deploying robust web applications. Educated with a Master's in Computer Science, I thrive on solving complex problems and continuously expanding my skillset. My career goal is to leverage technology to create innovative solutions that make a tangible difference.",
+  // Updated introduction to match the image's subtitle
+  introduction: "Passionate about creating intuitive and engaging user experiences. Specialize in transforming ideas into beautifully crafted products.",
   profilePictureUrl: "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9maWxlJTIwaW1hZ2V8ZW58MHx8fHwxNzQ3NTc2ODM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   profilePictureAiHint: "professional portrait",
 };
 
-export const softSkills: Skill[] = [
-  { name: "Problem Solving", icon: Lightbulb },
-  { name: "Team Collaboration", icon: Users },
-  { name: "Effective Communication", icon: Briefcase },
-  { name: "Adaptability", icon: Zap },
-  { name: "Critical Thinking", icon: Brain },
-];
-
-export const personalValues: Skill[] = [
-  { name: "Continuous Learning", icon: TrendingUp },
-  { name: "Integrity & Ownership", icon: ShieldCheck },
-  { name: "User-Centric Design", icon: UsersRound },
-  { name: "Quality Craftsmanship", icon: PackageCheck },
-  { name: "Innovation", icon: Rocket }
+// New stats data based on the image
+export const aboutStats: AboutStat[] = [
+  { value: "+12", label: "Years of Experience" },
+  { value: "+46", label: "Projects Completed" },
+  { value: "+20", label: "Worldwide Clients" },
 ];
 
 export const skills = {
@@ -160,7 +163,6 @@ export const projects: Project[] = [
     galleryImageUrls: [
       { url: 'https://placehold.co/600x400.png', aiHint: 'api endpoint example' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'database schema diagram' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'code snippet' },
     ],
   },
   {
@@ -174,7 +176,6 @@ export const projects: Project[] = [
     category: "Web Apps",
     galleryImageUrls: [
       { url: 'https://placehold.co/600x400.png', aiHint: 'dark mode' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'mobile view' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'projects section' },
     ],
   },
@@ -189,8 +190,8 @@ export const projects: Project[] = [
     demoUrl: "#",
     category: "ML",
     galleryImageUrls: [
-      { url: 'https://placehold.co/600x400.png', aiHint: 'input form' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'generated content example' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'input form example' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'content output' },
     ],
   },
 ];
@@ -273,23 +274,25 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "https://www.scrum.org/your-badge-url-3",
+    credentialUrl: "https://www.scrum.org/your-badge-url-3", // Added placeholder URL
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
 ];
 
 
+// Updated social links to match the image
 export const socialLinks = [
-  { name: "GitHub", url: "https://github.com/yourusername", icon: Github },
-  { name: "LinkedIn", url: "https://linkedin.com/in/yourusername", icon: Linkedin },
+  { name: "Dribbble", url: "#", icon: Dribbble }, // Placeholder URL
   { name: "Twitter", url: "https://twitter.com/yourusername", icon: Twitter },
+  { name: "Instagram", url: "#", icon: Instagram }, // Placeholder URL
+  { name: "Email", url: "mailto:alex.johnson@example.com", icon: Mail },
 ];
 
 export const contactDetails = {
   email: "alex.johnson@example.com",
   resumeUrl: "/placeholder-resume.pdf",
-  location: "San Francisco, CA",
+  location: "San Francisco, CA", // Used for About Me card
 };
 
 export const gitHubActivityData: GitHubActivity = {
@@ -335,3 +338,12 @@ export const testimonials: Testimonial[] = [
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
 
+// New data for company logos
+export const companyLogos: CompanyLogo[] = [
+  { name: "LogoIpsum1", url: "https://placehold.co/150x50.png?text=LogoIpsum+1", aiHint: "company logo" },
+  { name: "LogoIpsum2", url: "https://placehold.co/150x50.png?text=LogoIpsum+2", aiHint: "tech company" },
+  { name: "LogoIpsum3", url: "https://placehold.co/150x50.png?text=LogoIpsum+3", aiHint: "startup logo" },
+  { name: "LogoIpsum4", url: "https://placehold.co/150x50.png?text=LogoIpsum+4", aiHint: "partner logo" },
+];
+
+    

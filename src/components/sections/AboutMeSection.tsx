@@ -1,71 +1,107 @@
 
 import Image from 'next/image';
+import Link from 'next/link';
 import Section from '@/components/shared/Section';
-import SectionTitle from '@/components/shared/SectionTitle';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { bio, softSkills, personalValues, developerName } from '@/lib/data';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { developerName, developerTitle, bio, contactDetails, socialLinks, aboutStats, companyLogos } from '@/lib/data';
+import { ArrowRight } from 'lucide-react';
 
 export default function AboutMeSection() {
   return (
-    <Section id="about">
-      <SectionTitle>About Me</SectionTitle>
-      <div className="grid md:grid-cols-3 gap-8 items-start">
-        <Card className="md:col-span-1 animate-slideUp shadow-lg">
-          <CardContent className="p-6 flex flex-col items-center text-center">
-            <Avatar className="w-40 h-40 mb-6 border-4 border-accent shadow-lg shadow-accent/50">
-              <AvatarImage src={bio.profilePictureUrl} alt={developerName} data-ai-hint={bio.profilePictureAiHint} />
-              <AvatarFallback>{developerName.substring(0, 2).toUpperCase()}</AvatarFallback>
-            </Avatar>
-            <h3 className="text-2xl font-semibold text-primary">{developerName}</h3>
-            <p className="text-muted-foreground mt-1">Passionate Software Engineer</p>
-          </CardContent>
-        </Card>
+    <Section id="about" className="py-16 md:py-20 lg:py-28">
+      <div className="container mx-auto px-4">
+        <div className="grid lg:grid-cols-3 gap-10 lg:gap-16 items-center">
+          {/* Left Column: Profile Card */}
+          <div className="lg:col-span-1 animate-slideInLeft">
+            <Card className="bg-card text-card-foreground shadow-2xl rounded-xl overflow-hidden">
+              <div className="relative w-full aspect-[3/4]">
+                <Image
+                  src={bio.profilePictureUrl}
+                  alt={developerName}
+                  layout="fill"
+                  objectFit="cover"
+                  data-ai-hint={bio.profilePictureAiHint}
+                  priority
+                />
+              </div>
+              <CardContent className="p-6 text-center">
+                <h3 className="text-2xl font-semibold text-primary mb-1">{developerName}</h3>
+                <p className="text-muted-foreground text-sm mb-1">{developerTitle}</p>
+                <p className="text-muted-foreground text-xs mb-4">{contactDetails.location}</p>
+                <div className="flex justify-center space-x-3 mb-6">
+                  {socialLinks.slice(0, 4).map((link) => ( // Display up to 4 social links from new data
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={link.name}
+                      className="text-muted-foreground hover:text-accent transition-colors"
+                    >
+                      <link.icon className="h-5 w-5" />
+                    </a>
+                  ))}
+                </div>
+                <Button asChild className="w-full bg-accent hover:bg-accent/90 text-accent-foreground">
+                  <Link href="#contact">Let's Talk</Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
 
-        <Card className="md:col-span-2 animate-slideUp shadow-lg" style={{ animationDelay: '0.2s' }}>
-          <CardHeader>
-            <CardTitle className="text-2xl text-primary">My Journey</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg text-foreground leading-relaxed">
+          {/* Right Column: Main Content */}
+          <div className="lg:col-span-2 animate-slideUp" style={{ animationDelay: '0.2s' }}>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
+              Transforming Your Ideas into <span className="text-accent">Reality</span>
+            </h2>
+            <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
               {bio.introduction}
             </p>
-          </CardContent>
-        </Card>
-      </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mt-12">
-        <Card className="animate-slideUp shadow-lg" style={{ animationDelay: '0.4s' }}>
-          <CardHeader>
-            <CardTitle className="text-xl text-primary">Soft Skills</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-3">
-              {softSkills.map((skill) => (
-                <li key={skill.name} className="flex items-center text-foreground">
-                  <skill.icon className="h-5 w-5 mr-3 text-accent" />
-                  {skill.name}
-                </li>
+            <div className="grid grid-cols-3 gap-6 mb-12 text-center">
+              {aboutStats.map((stat, index) => (
+                <div key={index} className="animate-slideUp" style={{ animationDelay: `${0.3 + index * 0.1}s` }}>
+                  <p className="text-4xl lg:text-5xl font-bold text-primary mb-1">{stat.value}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</p>
+                </div>
               ))}
-            </ul>
-          </CardContent>
-        </Card>
-        <Card className="animate-slideUp shadow-lg" style={{ animationDelay: '0.6s' }}>
-          <CardHeader>
-            <CardTitle className="text-xl text-primary">Personal Values</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-3">
-              {personalValues.map((value) => (
-                <li key={value.name} className="flex items-center text-foreground">
-                  <value.icon className="h-5 w-5 mr-3 text-accent" />
-                  {value.name}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center gap-6 mb-12">
+              <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground w-full sm:w-auto">
+                <Link href="#contact">Let's Talk</Link>
+              </Button>
+              <Button variant="link" size="lg" asChild className="text-foreground hover:text-accent w-full sm:w-auto p-0">
+                <Link href="#projects">
+                  My Work <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
+            </div>
+
+            <div className="animate-slideUp" style={{ animationDelay: '0.8s' }}>
+              <p className="text-sm text-muted-foreground mb-6 text-center lg:text-left">
+                Relied on by companies near, far, and worldwide
+              </p>
+              <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 items-center">
+                {companyLogos.map((logo) => (
+                  <div key={logo.name} className="relative h-8 w-28 opacity-70 hover:opacity-100 transition-opacity">
+                    <Image
+                      src={logo.url}
+                      alt={logo.name}
+                      layout="fill"
+                      objectFit="contain"
+                      data-ai-hint={logo.aiHint}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Section>
   );
 }
+
+    
