@@ -21,7 +21,7 @@ export default function GitHubActivitySection() {
   ];
 
   return (
-    <Section id="github-activity"> {/* Removed className="bg-secondary" */}
+    <Section id="github-activity"> {/* Removed className to adopt default from Section component */}
       <SectionTitle>GitHub Activity</SectionTitle>
       
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -37,7 +37,7 @@ export default function GitHubActivitySection() {
       </div>
 
       {recentCommits && recentCommits.length > 0 && (
-        <Card className="mb-12 animate-slideUp shadow-lg" style={{ animationDelay: `${(stats.length) * 0.1 + 0.1}s` }}>
+        <Card className="mb-12 animate-slideUp shadow-lg bg-card text-card-foreground" style={{ animationDelay: `${(stats.length) * 0.1 + 0.1}s` }}>
           <CardHeader>
             <CardTitle className="text-xl text-primary">Recent Commits</CardTitle>
           </CardHeader>

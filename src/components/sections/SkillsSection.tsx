@@ -1,3 +1,4 @@
+
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,7 +14,7 @@ interface SkillCategoryProps {
 function SkillCategory({ title, skillsList, animationDelay = '0s' }: SkillCategoryProps) {
   return (
     <Card 
-      className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideInLeft" 
+      className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideInLeft bg-card text-card-foreground" 
       style={{ animationDelay }}
     >
       <CardHeader>
@@ -35,9 +36,10 @@ function SkillCategory({ title, skillsList, animationDelay = '0s' }: SkillCatego
 
 export default function SkillsSection() {
   return (
-    <Section id="skills" className="bg-secondary">
+    <Section id="skills" className="bg-blue-950 text-slate-200"> {/* Specific background for Skills */}
       <SectionTitle>Technical Skills</SectionTitle>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Card backgrounds and text colors are handled by Card component's theme variables */}
         <SkillCategory title="Frontend" skillsList={skills.frontend} animationDelay="0s" />
         <SkillCategory title="Backend" skillsList={skills.backend} animationDelay="0.2s" />
         <SkillCategory title="Databases" skillsList={skills.databases} animationDelay="0.4s" />

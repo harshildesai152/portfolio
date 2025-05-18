@@ -6,7 +6,7 @@ import { experiences } from '@/lib/data';
 
 export default function ExperienceSection() {
   return (
-    <Section id="experience"> {/* Removed className="bg-secondary" to adopt default from Section component */}
+    <Section id="experience"> {/* Removed className to adopt default from Section component */}
       <SectionTitle>Work Experience</SectionTitle>
       <div className="space-y-8">
         {experiences.map((exp, index) => (
