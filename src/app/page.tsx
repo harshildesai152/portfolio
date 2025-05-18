@@ -1,9 +1,12 @@
+
 import HeroSection from '@/components/sections/HeroSection';
 import AboutMeSection from '@/components/sections/AboutMeSection';
 import SkillsSection from '@/components/sections/SkillsSection';
 import ProjectsSection from '@/components/sections/ProjectsSection';
 import ExperienceSection from '@/components/sections/ExperienceSection';
 import EducationSection from '@/components/sections/EducationSection';
+import GitHubActivitySection from '@/components/sections/GitHubActivitySection';
+import TestimonialsSection from '@/components/sections/TestimonialsSection';
 import ContactSection from '@/components/sections/ContactSection';
 
 export default function Home() {
@@ -15,6 +18,8 @@ export default function Home() {
       <ProjectsSection />
       <ExperienceSection />
       <EducationSection />
+      <GitHubActivitySection />
+      <TestimonialsSection />
       <ContactSection />
     </>
   );

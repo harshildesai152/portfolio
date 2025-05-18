@@ -1,5 +1,6 @@
+
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck } from 'lucide-react';
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Quote, GitFork, Star } from 'lucide-react';
 
 export type Skill = {
   name: string;
@@ -34,6 +35,26 @@ export type EducationItem = {
   achievements?: string[];
 };
 
+export type GitHubActivity = {
+  username: string;
+  totalRepositories: number;
+  starsReceived: number;
+  forks: number;
+  contributionsLastYear: number; // Or a string like "500+"
+  profileUrl: string;
+  recentCommits?: { message: string; repo: string; url: string }[]; // Simplified
+};
+
+export type Testimonial = {
+  id: string;
+  quote: string;
+  author: string;
+  role: string;
+  avatarUrl: string;
+  avatarAiHint: string;
+};
+
+
 export const developerName = "Alex Johnson";
 export const developerTitle = "Software Engineer";
 export const developerTagline = "Building digital experiences that are intuitive, efficient, and impactful.";
@@ -47,7 +68,7 @@ export const bio = {
 export const softSkills: Skill[] = [
   { name: "Problem Solving", icon: Lightbulb },
   { name: "Team Collaboration", icon: Users },
-  { name: "Effective Communication", icon: Briefcase }, // Using Briefcase as a generic icon for communication
+  { name: "Effective Communication", icon: Briefcase },
   { name: "Adaptability", icon: Zap },
   { name: "Critical Thinking", icon: Brain },
 ];
@@ -62,8 +83,8 @@ export const personalValues: Skill[] = [
 
 export const skills = {
   frontend: [
-    { name: "React", icon: Component }, // Lucide 'Component' for React
-    { name: "Next.js", icon: Layers }, // Lucide 'Layers' for Next.js
+    { name: "React", icon: Component },
+    { name: "Next.js", icon: Layers },
     { name: "TypeScript", icon: Code },
     { name: "Tailwind CSS", icon: Palette },
     { name: "HTML5", icon: Code },
@@ -78,18 +99,18 @@ export const skills = {
   databases: [
     { name: "MongoDB", icon: Database },
     { name: "PostgreSQL", icon: Database },
-    { name: "Firebase", icon: Cloud }, // Using Cloud for Firebase
+    { name: "Firebase", icon: Cloud },
   ] as Skill[],
   devops: [
-    { name: "Docker", icon: Container }, // Replaced Docker with Container
+    { name: "Docker", icon: Container },
     { name: "AWS", icon: Cloud },
     { name: "Git", icon: GitMerge },
     { name: "CI/CD", icon: Package },
   ] as Skill[],
   tools: [
-    { name: "VS Code", icon: MonitorPlay }, // Using MonitorPlay for VS Code
+    { name: "VS Code", icon: MonitorPlay },
     { name: "GitHub", icon: Github },
-    { name: "Jira", icon: Construction }, // Using Construction for Jira
+    { name: "Jira", icon: Construction },
     { name: "Figma", icon: Palette },
   ] as Skill[],
 };
@@ -190,9 +211,49 @@ export const socialLinks = [
 
 export const contactDetails = {
   email: "alex.johnson@example.com",
-  resumeUrl: "/placeholder-resume.pdf", // Placeholder path
-  location: "San Francisco, CA", // Optional
+  resumeUrl: "/placeholder-resume.pdf",
+  location: "San Francisco, CA",
 };
 
-export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
+export const gitHubActivityData: GitHubActivity = {
+  username: "yourusername",
+  totalRepositories: 75,
+  starsReceived: 320,
+  forks: 150,
+  contributionsLastYear: 1200,
+  profileUrl: "https://github.com/yourusername",
+  recentCommits: [
+    { message: "feat: Implement new user authentication flow", repo: "ecommerce-platform", url: "#" },
+    { message: "fix: Resolve critical bug in payment processing", repo: "ecommerce-platform", url: "#" },
+    { message: "docs: Update API documentation for v2", repo: "task-api", url: "#" },
+  ]
+};
 
+export const testimonials: Testimonial[] = [
+  {
+    id: "testimonial1",
+    quote: "Alex is a highly skilled and dedicated software engineer. Their problem-solving abilities and attention to detail were instrumental in the success of our project. A true asset to any team!",
+    author: "Jane Doe",
+    role: "Project Manager, Tech Solutions Inc.",
+    avatarUrl: "https://placehold.co/100x100.png",
+    avatarAiHint: "woman professional",
+  },
+  {
+    id: "testimonial2",
+    quote: "Working with Alex was a fantastic experience. They are not only technically proficient but also an excellent communicator and team player. Consistently delivered high-quality work on time.",
+    author: "John Smith",
+    role: "Lead Developer, Innovate Startups Co.",
+    avatarUrl: "https://placehold.co/100x100.png",
+    avatarAiHint: "man smiling",
+  },
+  {
+    id: "testimonial3",
+    quote: "Alex's innovative approach and deep understanding of web technologies significantly improved our application's performance and user experience. Highly recommended!",
+    author: "Alice Brown",
+    role: "CTO, Alpha Web Services",
+    avatarUrl: "https://placehold.co/100x100.png",
+    avatarAiHint: "executive woman",
+  },
+];
+
+export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;

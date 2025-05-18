@@ -14,6 +14,8 @@ const navItems = [
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
+  { href: '#github-activity', label: 'GitHub' },
+  { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -40,9 +42,9 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation & Theme Toggle */}
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
             {navItems.map((item) => (
-              <Button key={item.label} variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent transition-colors">
+              <Button key={item.label} variant="ghost" asChild className="text-foreground hover:bg-accent/10 hover:text-accent transition-colors text-sm lg:text-base">
                 <Link href={item.href}>{item.label}</Link>
               </Button>
             ))}

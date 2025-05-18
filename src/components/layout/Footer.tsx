@@ -1,3 +1,4 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { socialLinks, footerText } from '@/lib/data';
@@ -23,6 +24,10 @@ export default function Footer() {
           <Link href="#about" className="hover:text-accent px-2">About</Link>|
           <Link href="#skills" className="hover:text-accent px-2">Skills</Link>|
           <Link href="#projects" className="hover:text-accent px-2">Projects</Link>|
+          <Link href="#experience" className="hover:text-accent px-2">Experience</Link>|
+          <Link href="#education" className="hover:text-accent px-2">Education</Link>|
+          <Link href="#github-activity" className="hover:text-accent px-2">GitHub</Link>|
+          <Link href="#testimonials" className="hover:text-accent px-2">Testimonials</Link>|
           <Link href="#contact" className="hover:text-accent px-2">Contact</Link>
         </div>
       </div>
