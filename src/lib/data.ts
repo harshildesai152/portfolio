@@ -70,7 +70,7 @@ export const developerTagline = "Building digital experiences that are intuitive
 
 export const bio = {
   introduction: "A passionate and results-oriented Software Engineer with 3+ years of experience in developing and deploying robust web applications. Educated with a Master's in Computer Science, I thrive on solving complex problems and continuously expanding my skillset. My career goal is to leverage technology to create innovative solutions that make a tangible difference.",
-  profilePictureUrl: "https://placehold.co/300x300.png",
+  profilePictureUrl: "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9maWxlJTIwaW1hZ2V8ZW58MHx8fHwxNzQ3NTc2ODM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   profilePictureAiHint: "professional portrait",
 };
 
