@@ -160,7 +160,7 @@ export const projects: Project[] = [
     id: "proj4",
     title: "AI Content Generator",
     description: "A proof-of-concept application using OpenAI's API to generate blog post ideas and short content snippets based on user prompts. The application features a simple interface for users to input keywords or topics, and it then interacts with the Genkit AI to produce creative and relevant content suggestions. This project explored prompt engineering techniques and the integration of large language models into web applications.",
-    thumbnailUrl: "https://placehold.co/600x400.png",
+    thumbnailUrl: "https://images.unsplash.com/photo-1665623544684-3069fb6457e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbCUyMGNvbnRlbnQlMjBnZW5lcmF0b3J8ZW58MHx8fHwxNzQ3NTc3NTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
     thumbnailAiHint: "ai interface",
     techStack: [skills.frontend[0], skills.backend[2], { name: "Genkit", icon: BrainCircuit }],
     githubUrl: "https://github.com/yourusername/ai-content-gen",
@@ -307,5 +307,6 @@ export const testimonials: Testimonial[] = [
 ];
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
+
 
 
