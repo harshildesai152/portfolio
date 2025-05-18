@@ -145,6 +145,7 @@ export const projects: Project[] = [
       { url: 'https://placehold.co/600x400.png', aiHint: 'product detail page' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'user checkout process' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'admin dashboard interface' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'mobile responsive view' },
     ],
   },
   {
@@ -258,7 +259,7 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "https://www.credly.com/your-badge-url-3",
+    credentialUrl: "#", // Placeholder URL for PSM I
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
