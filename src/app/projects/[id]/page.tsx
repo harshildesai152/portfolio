@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
-import Section from '@/components/shared/Section';
+// Section component is not used on this page, so no need to import.
 
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
   const project = projects.find(p => p.id === params.id);
@@ -64,14 +64,14 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           </CardHeader>
 
           <CardContent className="p-6 md:p-8">
-            <h3 className="text-2xl font-semibold text-foreground mb-4">Project Overview</h3>
+            <h3 className="text-2xl font-semibold text-foreground mb-4">{project.title} - Overview</h3>
             <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
               {project.description}
             </CardDescription>
 
             {project.galleryImageUrls && project.galleryImageUrls.length > 0 && (
               <div className="mt-10 pt-8 border-t border-border">
-                <h3 className="text-2xl font-semibold text-foreground mb-6">Image Gallery</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">{project.title} - Image Gallery</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                   {project.galleryImageUrls.map((image, index) => (
                     <div key={index} className="relative aspect-video rounded-lg overflow-hidden shadow-md group">
@@ -91,7 +91,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 
             {(project.githubUrl || (project.demoUrl && project.demoUrl !== "#")) && (
               <div className="mt-10 pt-8 border-t border-border">
-                <h3 className="text-2xl font-semibold text-foreground mb-6">Links</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">{project.title} - Links</h3>
                 <div className="flex flex-col sm:flex-row items-start gap-4">
                   {project.githubUrl && (
                     <Button variant="outline" size="lg" asChild className="border-primary text-primary hover:bg-primary/10">
