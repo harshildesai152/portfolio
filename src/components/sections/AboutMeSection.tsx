@@ -15,22 +15,24 @@ export default function AboutMeSection() {
           {/* Left Column: Profile Card */}
           <div className="lg:col-span-1 animate-slideInLeft">
             <Card className="bg-card text-card-foreground shadow-2xl rounded-xl overflow-hidden">
-              <div className="relative w-full aspect-[3/4]">
-                <Image
-                  src={bio.profilePictureUrl}
-                  alt={developerName}
-                  layout="fill"
-                  objectFit="cover"
-                  data-ai-hint={bio.profilePictureAiHint}
-                  priority
-                />
+              <div className="flex justify-center pt-8 pb-4"> {/* Container for centering and padding the dial */}
+                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-accent shadow-xl shadow-accent/50">
+                  <Image
+                    src={bio.profilePictureUrl}
+                    alt={developerName}
+                    layout="fill"
+                    objectFit="cover"
+                    data-ai-hint={bio.profilePictureAiHint}
+                    priority
+                  />
+                </div>
               </div>
-              <CardContent className="p-6 text-center">
+              <CardContent className="p-6 pt-2 text-center"> {/* Adjusted top padding */}
                 <h3 className="text-2xl font-semibold text-primary mb-1">{developerName}</h3>
                 <p className="text-muted-foreground text-sm mb-1">{developerTitle}</p>
                 <p className="text-muted-foreground text-xs mb-4">{contactDetails.location}</p>
                 <div className="flex justify-center space-x-3 mb-6">
-                  {socialLinks.slice(0, 4).map((link) => ( // Display up to 4 social links from new data
+                  {socialLinks.slice(0, 4).map((link) => ( 
                     <a
                       key={link.name}
                       href={link.url}
@@ -103,5 +105,4 @@ export default function AboutMeSection() {
     </Section>
   );
 }
-
     
