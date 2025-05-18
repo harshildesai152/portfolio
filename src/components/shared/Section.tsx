@@ -1,3 +1,4 @@
+
 import type { HTMLAttributes } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -13,10 +14,10 @@ export default function Section({ id, className, children, ...props }: SectionPr
       id={id}
       className={cn(
         'py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8 animate-slideUp',
-        'bg-indigo-900 text-slate-200', // Reverted background and base text color
-        'border-2 border-accent', // Added accent border
-        'shadow-xl shadow-accent/30', // Added accent-tinted shadow
-        'rounded-lg my-8', // Added margin between sections and rounded corners
+        'bg-blue-950 text-slate-200', // Changed to Dark Oxford Blue (bg-blue-950)
+        'border-2 border-accent',
+        'shadow-xl shadow-accent/30',
+        'rounded-lg my-8',
         className
       )}
       {...props}

@@ -1,5 +1,5 @@
 
-'use client'; // Make this a client component
+'use client'; 
 
 import Link from 'next/link';
 import Section from '@/components/shared/Section';
@@ -21,7 +21,7 @@ export default function GitHubActivitySection() {
   ];
 
   return (
-    <Section id="github-activity">
+    <Section id="github-activity"> {/* Removed className="bg-secondary" */}
       <SectionTitle>GitHub Activity</SectionTitle>
       
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
