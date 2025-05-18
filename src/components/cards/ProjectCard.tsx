@@ -13,14 +13,14 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, animationDelay = '0s' }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col h-full animate-slideUp" style={{ animationDelay }}>
-      <div className="relative w-full h-48 md:h-56">
+    <Card className="overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full animate-slideUp" style={{ animationDelay }}>
+      <div className="relative w-full h-48 md:h-56 group"> {/* Added group here for the image hover effect if needed, or can rely on card hover */}
         <Image
           src={project.thumbnailUrl}
           alt={project.title}
           layout="fill"
           objectFit="cover"
-          className="transition-transform duration-500 group-hover:scale-105"
+          className="transition-transform duration-500 group-hover:scale-105" // This will respond to the Card hover due to group context
           data-ai-hint={project.thumbnailAiHint}
         />
       </div>
