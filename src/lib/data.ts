@@ -7,6 +7,11 @@ export type Skill = {
   icon: LucideIcon;
 };
 
+export type GalleryImage = {
+  url: string;
+  aiHint: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -17,6 +22,7 @@ export type Project = {
   githubUrl?: string;
   demoUrl?: string;
   category: string;
+  galleryImageUrls?: GalleryImage[];
 };
 
 export type Experience = {
@@ -135,6 +141,11 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/yourusername/ecommerce-platform",
     demoUrl: "#",
     category: "Web Apps",
+    galleryImageUrls: [
+      { url: 'https://placehold.co/600x400.png', aiHint: 'product detail page' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'user checkout process' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'admin dashboard interface' },
+    ],
   },
   {
     id: "proj2",
@@ -247,7 +258,7 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "https://www.credly.com/your-badge-url-3", // Added functional URL
+    credentialUrl: "https://www.credly.com/your-badge-url-3",
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
@@ -309,6 +320,4 @@ export const testimonials: Testimonial[] = [
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
 
-
-
-
+    

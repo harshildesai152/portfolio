@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { projects } from '@/lib/data';
@@ -27,7 +28,7 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
   }
 
   return (
-    <div className="bg-background text-foreground py-12"> {/* Use main theme background */}
+    <div className="bg-background text-foreground py-12">
       <div className="container mx-auto px-4">
         <Button variant="outline" asChild className="mb-8 border-primary text-primary hover:bg-primary/10">
           <Link href="/#projects">
@@ -36,14 +37,14 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
         </Button>
 
         <Card className="overflow-hidden shadow-2xl">
-          <div className="relative w-full h-72 md:h-[500px]"> {/* Increased height for detail view */}
+          <div className="relative w-full h-72 md:h-[500px]">
             <Image
               src={project.thumbnailUrl}
               alt={project.title}
               layout="fill"
               objectFit="cover"
               data-ai-hint={project.thumbnailAiHint}
-              priority // Prioritize loading the main project image
+              priority
             />
           </div>
           <CardHeader className="p-6 md:p-8">
@@ -67,6 +68,26 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
               {project.description}
             </CardDescription>
+
+            {project.galleryImageUrls && project.galleryImageUrls.length > 0 && (
+              <div className="mt-10 pt-8 border-t border-border">
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Image Gallery</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {project.galleryImageUrls.map((image, index) => (
+                    <div key={index} className="relative aspect-video rounded-lg overflow-hidden shadow-md group">
+                      <Image
+                        src={image.url}
+                        alt={`${project.title} - Gallery Image ${index + 1}`}
+                        layout="fill"
+                        objectFit="cover"
+                        data-ai-hint={image.aiHint}
+                        className="group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {(project.githubUrl || (project.demoUrl && project.demoUrl !== "#")) && (
               <div className="mt-10 pt-8 border-t border-border">
@@ -102,3 +123,5 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
 //     id: project.id,
 //   }));
 // }
+
+    
