@@ -19,7 +19,7 @@ export default function ProjectsSection() {
   return (
     <Section id="projects">
       <div className="text-center mb-12 animate-slideUp" style={{ animationDelay: '0.2s' }}>
-        <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4">
+        <h2 className="text-4xl md:text-5xl font-bold text-primary mb-4 animate-shakeY">
           My Projects
         </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
