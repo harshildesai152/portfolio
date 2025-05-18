@@ -11,7 +11,7 @@ export default function Section({ id, className, children, ...props }: SectionPr
   return (
     <section
       id={id}
-      className={cn('py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8 animate-fadeIn', className)}
+      className={cn('py-16 md:py-24 container mx-auto px-4 sm:px-6 lg:px-8 animate-slideUp', className)}
       {...props}
     >
       {children}
