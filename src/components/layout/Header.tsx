@@ -7,6 +7,7 @@ import { Menu, CodeXml, Sun, Moon } from 'lucide-react';
 import { developerName } from '@/lib/data';
 import { useState, useEffect } from 'react';
 import { useTheme } from '@/components/providers/ThemeProvider';
+import { cn } from '@/lib/utils';
 
 const navItems = [
   { href: '#about', label: 'About' },
@@ -14,10 +15,11 @@ const navItems = [
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
-  { href: '#certifications', label: 'Certifications' }, // New nav item
+  { href: '#certifications', label: 'Certifications' },
   { href: '#github-activity', label: 'GitHub' },
   { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
+  { href: '#faq', label: 'FAQ' }, // New nav item
 ];
 
 export default function Header() {
@@ -66,9 +68,12 @@ export default function Header() {
                 key={item.label}
                 variant="ghost"
                 asChild
-                className={`text-foreground hover:bg-accent/10 hover:text-accent transition-colors ${
-                  isScrolled ? 'text-sm lg:text-base py-1 px-2' : 'text-base lg:text-lg py-2 px-3'
-                }`}
+                className={cn(
+                  `text-foreground hover:bg-accent/10 hover:text-accent transition-colors ${
+                    isScrolled ? 'text-sm lg:text-base py-1 px-2' : 'text-base lg:text-lg py-2 px-3'
+                  }`,
+                  item.label === 'About' ? 'nav-link-double-underline' : ''
+                )}
               >
                 <Link href={item.href}>{item.label}</Link>
               </Button>
@@ -112,7 +117,10 @@ export default function Header() {
                       key={item.label}
                       variant="ghost"
                       asChild
-                      className="text-lg text-foreground hover:bg-accent/10 hover:text-accent justify-start"
+                      className={cn(
+                        "text-lg text-foreground hover:bg-accent/10 hover:text-accent justify-start",
+                         item.label === 'About' ? 'nav-link-double-underline' : ''
+                      )}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       <Link href={item.href}>{item.label}</Link>

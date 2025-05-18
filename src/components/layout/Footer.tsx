@@ -26,10 +26,11 @@ export default function Footer() {
           <Link href="#projects" className="hover:text-accent px-2">Projects</Link>|
           <Link href="#experience" className="hover:text-accent px-2">Experience</Link>|
           <Link href="#education" className="hover:text-accent px-2">Education</Link>|
-          <Link href="#certifications" className="hover:text-accent px-2">Certifications</Link>| {/* New link */}
+          <Link href="#certifications" className="hover:text-accent px-2">Certifications</Link>|
           <Link href="#github-activity" className="hover:text-accent px-2">GitHub</Link>|
           <Link href="#testimonials" className="hover:text-accent px-2">Testimonials</Link>|
-          <Link href="#contact" className="hover:text-accent px-2">Contact</Link>
+          <Link href="#contact" className="hover:text-accent px-2">Contact</Link>|
+          <Link href="#faq" className="hover:text-accent px-2">FAQ</Link> {/* New link */}
         </div>
       </div>
     </footer>

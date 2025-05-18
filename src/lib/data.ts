@@ -80,19 +80,23 @@ export type CompanyLogo = {
   aiHint: string;
 };
 
+export type FAQItem = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
 
 export const developerName = "Alex Johnson";
-export const developerTitle = "Software Engineer"; // Kept original title, image shows "Product Designer & Developer"
+export const developerTitle = "Software Engineer";
 export const developerTagline = "Building digital experiences that are intuitive, efficient, and impactful.";
 
 export const bio = {
-  // Updated introduction to match the image's subtitle
   introduction: "Passionate about creating intuitive and engaging user experiences. Specialize in transforming ideas into beautifully crafted products.",
   profilePictureUrl: "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9maWxlJTIwaW1hZ2V8ZW58MHx8fHwxNzQ3NTc2ODM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
   profilePictureAiHint: "professional portrait",
 };
 
-// New stats data based on the image
 export const aboutStats: AboutStat[] = [
   { value: "+12", label: "Years of Experience" },
   { value: "+46", label: "Projects Completed" },
@@ -163,6 +167,7 @@ export const projects: Project[] = [
     galleryImageUrls: [
       { url: 'https://placehold.co/600x400.png', aiHint: 'api endpoint example' },
       { url: 'https://placehold.co/600x400.png', aiHint: 'database schema diagram' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'code snippet' },
     ],
   },
   {
@@ -274,25 +279,23 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "https://www.scrum.org/your-badge-url-3", // Added placeholder URL
+    credentialUrl: "https://www.scrum.org/your-badge-url-3",
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
 ];
 
-
-// Updated social links to match the image
 export const socialLinks = [
-  { name: "Dribbble", url: "#", icon: Dribbble }, // Placeholder URL
+  { name: "Dribbble", url: "#", icon: Dribbble },
   { name: "Twitter", url: "https://twitter.com/yourusername", icon: Twitter },
-  { name: "Instagram", url: "#", icon: Instagram }, // Placeholder URL
+  { name: "Instagram", url: "#", icon: Instagram },
   { name: "Email", url: "mailto:alex.johnson@example.com", icon: Mail },
 ];
 
 export const contactDetails = {
   email: "alex.johnson@example.com",
   resumeUrl: "/placeholder-resume.pdf",
-  location: "San Francisco, CA", // Used for About Me card
+  location: "San Francisco, CA",
 };
 
 export const gitHubActivityData: GitHubActivity = {
@@ -338,7 +341,6 @@ export const testimonials: Testimonial[] = [
 
 export const footerText = `© ${new Date().getFullYear()} ${developerName}. All rights reserved.`;
 
-// New data for company logos
 export const companyLogos: CompanyLogo[] = [
   { name: "LogoIpsum1", url: "https://placehold.co/150x50.png?text=LogoIpsum+1", aiHint: "company logo" },
   { name: "LogoIpsum2", url: "https://placehold.co/150x50.png?text=LogoIpsum+2", aiHint: "tech company" },
@@ -346,4 +348,30 @@ export const companyLogos: CompanyLogo[] = [
   { name: "LogoIpsum4", url: "https://placehold.co/150x50.png?text=LogoIpsum+4", aiHint: "partner logo" },
 ];
 
-    
+export const faqItems: FAQItem[] = [
+  {
+    id: "faq1",
+    question: "What services do you offer?",
+    answer: "I offer a range of services including custom web development, frontend and backend solutions, API development, and UI/UX design consulting. My goal is to build scalable and high-performing digital products tailored to client needs."
+  },
+  {
+    id: "faq2",
+    question: "What is your design process?",
+    answer: "My design process involves understanding client goals, conducting user research, creating wireframes and prototypes, and iterating based on feedback to ensure the final product meets user needs."
+  },
+  {
+    id: "faq3",
+    question: "How do you handle project timelines?",
+    answer: "I work closely with clients to establish clear timelines and milestones, ensuring that projects stay on track and are delivered on time. Regular communication and transparent progress tracking are key components of my approach."
+  },
+  {
+    id: "faq4",
+    question: "Can you work with existing teams?",
+    answer: "Absolutely! I can collaborate seamlessly with existing teams, integrating into your workflow to enhance design and development efforts. I'm experienced in various team structures and communication tools."
+  },
+  {
+    id: "faq5",
+    question: "What tools do you use?",
+    answer: "I utilize various tools for design and development, including Figma, Adobe XD, HTML, CSS, JavaScript, and React, ensuring high-quality outcomes for all projects. I'm also proficient with backend technologies like Node.js, Python, and various database systems."
+  }
+];
