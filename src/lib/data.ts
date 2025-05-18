@@ -157,6 +157,11 @@ export const projects: Project[] = [
     techStack: [skills.backend[0], skills.backend[1], skills.databases[1]],
     githubUrl: "https://github.com/yourusername/task-api",
     category: "APIs",
+    galleryImageUrls: [
+      { url: 'https://placehold.co/600x400.png', aiHint: 'api endpoint example' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'database schema diagram' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'code snippet' },
+    ],
   },
   {
     id: "proj3",
@@ -167,6 +172,10 @@ export const projects: Project[] = [
     techStack: [skills.frontend[0], skills.frontend[1], skills.frontend[3]],
     githubUrl: "https://github.com/yourusername/portfolio-v2",
     category: "Web Apps",
+    galleryImageUrls: [
+      { url: 'https://placehold.co/600x400.png', aiHint: 'dark mode' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'mobile view' },
+    ],
   },
   {
     id: "proj4",
@@ -178,6 +187,10 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/yourusername/ai-content-gen",
     demoUrl: "#",
     category: "ML",
+    galleryImageUrls: [
+      { url: 'https://placehold.co/600x400.png', aiHint: 'input form' },
+      { url: 'https://placehold.co/600x400.png', aiHint: 'generated content example' },
+    ],
   },
 ];
 
@@ -259,7 +272,7 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "#", // Placeholder URL for PSM I
+    credentialUrl: "https://www.scrum.org/your-badge-url-3", 
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
