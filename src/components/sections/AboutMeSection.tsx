@@ -1,3 +1,4 @@
+
 import Image from 'next/image';
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
@@ -12,7 +13,7 @@ export default function AboutMeSection() {
       <div className="grid md:grid-cols-3 gap-8 items-start">
         <Card className="md:col-span-1 animate-slideUp shadow-lg">
           <CardContent className="p-6 flex flex-col items-center text-center">
-            <Avatar className="w-40 h-40 mb-6 border-4 border-primary shadow-md">
+            <Avatar className="w-40 h-40 mb-6 border-4 border-accent shadow-lg shadow-accent/50">
               <AvatarImage src={bio.profilePictureUrl} alt={developerName} data-ai-hint={bio.profilePictureAiHint} />
               <AvatarFallback>{developerName.substring(0, 2).toUpperCase()}</AvatarFallback>
             </Avatar>
