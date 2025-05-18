@@ -103,10 +103,22 @@
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+@keyframes shakeY {
+  0%, 100% { transform: translateY(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateY(-3px); }
+  20%, 40%, 60%, 80% { transform: translateY(3px); }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.7s ease-out forwards;
 }
 
 .animate-slideUp {
   animation: slideUp 0.7s ease-out forwards;
+}
+
+.animate-shakeY {
+  animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) both;
+  /* Apply animation on hover or a specific trigger if needed */
+  /* For continuous animation: animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) infinite both; */
 }

@@ -8,8 +8,8 @@ export default function HeroSection() {
     <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-secondary to-background text-center p-4">
       <div className="space-y-8 max-w-3xl animate-fadeIn">
         <h1 className="text-5xl md:text-7xl font-extrabold">
-          <span className="block text-primary leading-tight">{developerName}</span>
-          <span className="block text-accent text-3xl md:text-5xl mt-2">{developerTitle}</span>
+          <span className="block text-primary leading-tight animate-shakeY" style={{ animationDelay: '0.5s' }}>{developerName}</span>
+          <span className="block text-accent text-3xl md:text-5xl mt-2 animate-shakeY" style={{ animationDelay: '0.7s' }}>{developerTitle}</span>
         </h1>
         <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
           {developerTagline}
