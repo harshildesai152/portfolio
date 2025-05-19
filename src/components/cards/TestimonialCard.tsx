@@ -1,9 +1,9 @@
 
 import Image from 'next/image';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { Testimonial } from '@/lib/data';
-import { Quote } from 'lucide-react';
+// Quote icon is removed as per the new design
 
 interface TestimonialCardProps {
   testimonial: Testimonial;
@@ -14,12 +14,20 @@ export default function TestimonialCard({ testimonial, animationDelay = '0s' }: 
   const fallbackName = testimonial.author.split(' ').map(n => n[0]).join('').toUpperCase();
 
   return (
-    <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full animate-slideUp" style={{ animationDelay }}>
+    <Card 
+      className="shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full animate-slideUp bg-card text-card-foreground" 
+      style={{ animationDelay }}
+    >
       <CardHeader className="pb-4">
-        <Quote className="h-8 w-8 text-accent mb-2 transform rotate-180" />
+        {/* The Quote icon is removed from here */}
+        <CardTitle className="text-xl font-semibold text-primary mb-2">
+          {testimonial.title}
+        </CardTitle>
       </CardHeader>
       <CardContent className="flex-grow">
-        <p className="text-foreground italic leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
+        <p className="text-foreground leading-relaxed"> {/* Removed italic class */}
+          &ldquo;{testimonial.quote}&rdquo;
+        </p>
       </CardContent>
       <CardFooter className="mt-4 pt-4 border-t border-border flex items-center space-x-4">
         <Avatar className="h-12 w-12 border-2 border-primary">

@@ -1,6 +1,6 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Dribbble, Instagram, ArrowRight, Activity, Star, GitFork } from 'lucide-react';
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Dribbble, Instagram, ArrowRight, Activity, Star, GitFork, GraduationCap, FolderKanban } from 'lucide-react';
 
 export type Skill = {
   name: string;
@@ -62,6 +62,7 @@ export type GitHubActivity = {
 
 export type Testimonial = {
   id: string;
+  title: string; // Added title field
   quote: string;
   author: string;
   role: string;
@@ -279,13 +280,15 @@ export const certifications: Certification[] = [
     name: "Professional Scrum Master I (PSM I)",
     issuingOrganization: "Scrum.org",
     date: "Issued: Jun 2021",
-    credentialUrl: "https://www.scrum.org/your-badge-url-3",
+    credentialUrl: "https://www.scrum.org/your-badge-url-3", // Added placeholder URL
     icon: PackageCheck,
     description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
   },
 ];
 
 export const socialLinks = [
+  { name: "GitHub", url: "https://github.com/yourusername", icon: Github },
+  { name: "LinkedIn", url: "https://linkedin.com/in/yourusername", icon: Linkedin },
   { name: "Dribbble", url: "#", icon: Dribbble },
   { name: "Twitter", url: "https://twitter.com/yourusername", icon: Twitter },
   { name: "Instagram", url: "#", icon: Instagram },
@@ -315,7 +318,8 @@ export const gitHubActivityData: GitHubActivity = {
 export const testimonials: Testimonial[] = [
   {
     id: "testimonial1",
-    quote: "Alex is a highly skilled and dedicated software engineer. Their problem-solving abilities and attention to detail were instrumental in the success of our project. A true asset to any team!",
+    title: "A master of frontend development with a keen design sensibility",
+    quote: "Alex is a fantastic frontend developer! He took our requirements and turned them into something amazing. His attention to detail, creativity, and clear communication made the whole process smooth. We're extremely happy with the results and would highly recommend him!",
     author: "Jane Doe",
     role: "Project Manager, Tech Solutions Inc.",
     avatarUrl: "https://placehold.co/100x100.png",
@@ -323,6 +327,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "testimonial2",
+    title: "A frontend developer who transforms visions into reality",
     quote: "Working with Alex was a fantastic experience. They are not only technically proficient but also an excellent communicator and team player. Consistently delivered high-quality work on time.",
     author: "John Smith",
     role: "Lead Developer, Innovate Startups Co.",
@@ -331,6 +336,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     id: "testimonial3",
+    title: "Efficient, innovative, and a pleasure to work with",
     quote: "Alex's innovative approach and deep understanding of web technologies significantly improved our application's performance and user experience. Highly recommended!",
     author: "Alice Brown",
     role: "CTO, Alpha Web Services",
