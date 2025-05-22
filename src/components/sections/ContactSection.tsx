@@ -15,6 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { submitContactForm, type ContactFormState } from '@/actions/contact';
 import { socialLinks, contactDetails } from '@/lib/data';
 import { Mail, MapPin, ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 
 function SubmitButton() {
@@ -75,7 +76,13 @@ export default function ContactSection() {
     <Section id="contact">
       <SectionTitle>Get In Touch</SectionTitle>
       <div className="grid md:grid-cols-2 gap-12 items-start">
-        <Card className="animate-slideUp shadow-lg bg-card text-card-foreground" style={{ animationDelay: '0.2s' }}>
+        <Card 
+          className={cn(
+            "glass-experience-card", // Applied glassmorphism style
+            "shadow-lg bg-card text-card-foreground"
+          )}
+          style={{ animationDelay: '0.2s' }}
+        >
           <CardHeader>
             <CardTitle className="text-2xl text-primary">Contact Information</CardTitle>
           </CardHeader>
@@ -84,7 +91,7 @@ export default function ContactSection() {
               <Mail className="h-6 w-6 text-accent" />
               <div>
                 <h4 className="font-semibold text-card-foreground">Email</h4>
-                <a href={`mailto:${contactDetails.email}`} className="text-slate-400 hover:text-primary transition-colors">
+                <a href={`mailto:${contactDetails.email}`} className="text-muted-foreground hover:text-primary transition-colors">
                   {contactDetails.email}
                 </a>
               </div>
@@ -94,13 +101,13 @@ export default function ContactSection() {
                 <MapPin className="h-6 w-6 text-accent" />
                 <div>
                   <h4 className="font-semibold text-card-foreground">Location</h4>
-                  <p className="text-slate-400">{contactDetails.location}</p>
+                  <p className="text-muted-foreground">{contactDetails.location}</p>
                 </div>
               </div>
             )}
             <div>
               <h4 className="font-semibold text-card-foreground mb-3">Connect with me:</h4>
-              <div className="flex flex-wrap gap-3"> {/* Changed to flex-wrap gap-3 for better spacing */}
+              <div className="flex flex-wrap gap-3">
                 {socialLinks.map((link) => (
                   <Link
                     key={link.name}
@@ -108,9 +115,9 @@ export default function ContactSection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={link.name}
-                    className="social-icon-ephraim" // Apply the new class for hover effect
+                    className="social-icon-ephraim"
                   >
-                    <link.icon /> {/* Icon size will be controlled by CSS */}
+                    <link.icon />
                   </Link>
                 ))}
               </div>
@@ -118,7 +125,13 @@ export default function ContactSection() {
           </CardContent>
         </Card>
 
-        <Card className="animate-slideUp shadow-lg bg-card text-card-foreground" style={{ animationDelay: '0.4s' }}>
+        <Card 
+          className={cn(
+            "glass-experience-card", // Applied glassmorphism style
+            "shadow-lg bg-card text-card-foreground"
+          )}
+          style={{ animationDelay: '0.4s' }}
+        >
           <CardHeader>
             <CardTitle className="text-2xl text-primary">Send a Message</CardTitle>
           </CardHeader>
@@ -168,7 +181,7 @@ export default function ContactSection() {
                   {getFieldError('email') && <p className="text-destructive text-sm mt-1">{getFieldError('email')}</p>}
                 </div>
                 <div>
-                  <Label htmlFor="phone" className="text-card-foreground">Phone Number <span className="text-xs text-slate-400">(Optional)</span></Label>
+                  <Label htmlFor="phone" className="text-card-foreground">Phone Number <span className="text-xs text-muted-foreground">(Optional)</span></Label>
                   <Input
                     type="tel"
                     id="phone"

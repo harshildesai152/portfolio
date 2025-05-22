@@ -4,6 +4,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { LucideIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface AnimatedStatCardProps {
   label: string;
@@ -74,7 +75,10 @@ export default function AnimatedStatCard({ label, value, icon: Icon, animationDe
   return (
     <Card
       ref={cardRef}
-      className="text-center animate-slideUp shadow-lg"
+      className={cn(
+        "glass-experience-card", // Applied glassmorphism style
+        "text-center shadow-lg" // Kept base shadow
+      )}
       style={{ animationDelay }}
     >
       <CardHeader className="pb-2">

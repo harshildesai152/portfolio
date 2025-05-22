@@ -22,7 +22,7 @@ export default function GitHubActivitySection() {
   ];
 
   return (
-    <Section id="github-activity"> {/* Removed className to adopt default from Section component */}
+    <Section id="github-activity">
       <SectionTitle>GitHub Activity</SectionTitle>
       
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -38,7 +38,13 @@ export default function GitHubActivitySection() {
       </div>
 
       {recentCommits && recentCommits.length > 0 && (
-        <Card className="mb-12 animate-slideUp shadow-lg bg-card text-card-foreground" style={{ animationDelay: `${(stats.length) * 0.1 + 0.1}s` }}>
+        <Card
+          className={cn(
+            "glass-experience-card", // Applied glassmorphism style
+            "mb-12 shadow-lg bg-card text-card-foreground"
+          )}
+          style={{ animationDelay: `${(stats.length) * 0.1 + 0.1}s` }}
+        >
           <CardHeader>
             <CardTitle className="text-xl text-primary">Recent Commits</CardTitle>
           </CardHeader>
@@ -57,13 +63,13 @@ export default function GitHubActivitySection() {
         </Card>
       )}
 
-      <div className="text-center animate-slideUp" style={{ animationDelay: `${(stats.length) * 0.1 + 0.2}s` }}>
+      <div className="text-center" style={{ animationDelay: `${(stats.length) * 0.1 + 0.2}s` }}>
         <Button 
           asChild 
           size="lg" 
           className={cn(
             "bg-primary text-primary-foreground hover:bg-primary/90",
-            "hover-glow-button" // Added the hover glow effect class
+            "hover-glow-button"
           )}
         >
           <Link href={profileUrl} target="_blank" rel="noopener noreferrer">

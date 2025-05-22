@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from '@/components/ui/button';
 import type { Certification } from '@/lib/data';
 import { CalendarDays, ExternalLink, Award as DefaultCertificationIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface CertificationCardProps {
   certification: Certification;
@@ -15,7 +16,10 @@ export default function CertificationCard({ certification, animationDelay = '0s'
   const Icon = certification.icon || DefaultCertificationIcon;
   return (
     <Card
-      className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideUp bg-card text-card-foreground w-full h-full flex flex-col"
+      className={cn(
+        "glass-experience-card", // Applied glassmorphism style
+        "shadow-lg hover:shadow-xl transition-shadow duration-300 bg-card text-card-foreground w-full h-full flex flex-col"
+      )}
       style={{ animationDelay }}
     >
       <CardHeader className="pb-4">

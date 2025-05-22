@@ -1,16 +1,25 @@
+
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { education } from '@/lib/data';
 import { GraduationCap, CalendarDays, Award } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function EducationSection() {
   return (
     <Section id="education">
       <SectionTitle>Education</SectionTitle>
-      <div className="space-y-8 max-w-3xl mx-auto"> {/* Changed from grid to single column, centered */}
+      <div className="space-y-8 max-w-3xl mx-auto">
         {education.map((edu, index) => (
-          <Card key={index} className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideUp" style={{ animationDelay: `${index * 0.2}s` }}>
+          <Card
+            key={index}
+            className={cn(
+              "glass-experience-card", // Applied glassmorphism style
+              "shadow-lg hover:shadow-xl transition-shadow duration-300" // Kept base shadow/transition
+            )}
+            style={{ animationDelay: `${index * 0.2}s` }}
+          >
             <CardHeader>
               <CardTitle className="text-xl text-primary flex items-center">
                 <GraduationCap className="h-6 w-6 mr-2 text-accent" />
