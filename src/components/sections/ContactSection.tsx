@@ -20,11 +20,11 @@ import { Mail, MapPin, ArrowRight } from 'lucide-react';
 function SubmitButton() {
   const { pending } = useFormStatus();
   return (
-    <Button 
-      type="submit" 
-      disabled={pending} 
-      variant="link" // Changed variant to link
-      className="text-2xl font-semibold text-primary hover:text-accent p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 group mt-4" // Adjusted styling
+    <Button
+      type="submit"
+      disabled={pending}
+      variant="link"
+      className="text-2xl font-semibold text-primary hover:text-accent p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 group mt-4"
     >
       {pending ? 'Sending...' : 'Submit'}
       <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
@@ -59,10 +59,10 @@ export default function ContactSection() {
       }
     }
   }, [state, toast]);
-  
+
   const getFieldError = (fieldName: string) => {
     if (state.issues && state.fields && state.fields[fieldName] !== undefined) {
-      const fieldSpecificIssue = state.issues.find(issue => 
+      const fieldSpecificIssue = state.issues.find(issue =>
         issue.toLowerCase().includes(fieldName.replace(/([A-Z])/g, ' $1').toLowerCase().trim())
       );
       return fieldSpecificIssue;
@@ -74,8 +74,8 @@ export default function ContactSection() {
   return (
     <Section id="contact">
       <SectionTitle>Get In Touch</SectionTitle>
-      <div className="grid md:grid-cols-2 gap-12 items-start"> {/* Added items-start */}
-        <Card className="animate-slideUp shadow-lg" style={{ animationDelay: '0.2s' }}>
+      <div className="grid md:grid-cols-2 gap-12 items-start">
+        <Card className="animate-slideUp shadow-lg bg-card text-card-foreground" style={{ animationDelay: '0.2s' }}>
           <CardHeader>
             <CardTitle className="text-2xl text-primary">Contact Information</CardTitle>
           </CardHeader>
@@ -99,21 +99,26 @@ export default function ContactSection() {
               </div>
             )}
             <div>
-              <h4 className="font-semibold text-card-foreground mb-2">Connect with me:</h4>
-              <div className="flex space-x-4">
+              <h4 className="font-semibold text-card-foreground mb-3">Connect with me:</h4>
+              <div className="flex flex-wrap gap-3"> {/* Changed to flex-wrap gap-3 for better spacing */}
                 {socialLinks.map((link) => (
-                  <Button key={link.name} variant="outline" size="icon" asChild className="border-primary text-primary hover:bg-primary/10">
-                    <Link href={link.url} target="_blank" rel="noopener noreferrer" aria-label={link.name}>
-                      <link.icon className="h-5 w-5" />
-                    </Link>
-                  </Button>
+                  <Link
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={link.name}
+                    className="social-icon-ephraim" // Apply the new class for hover effect
+                  >
+                    <link.icon /> {/* Icon size will be controlled by CSS */}
+                  </Link>
                 ))}
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="animate-slideUp shadow-lg" style={{ animationDelay: '0.4s' }}>
+        <Card className="animate-slideUp shadow-lg bg-card text-card-foreground" style={{ animationDelay: '0.4s' }}>
           <CardHeader>
             <CardTitle className="text-2xl text-primary">Send a Message</CardTitle>
           </CardHeader>
@@ -122,27 +127,27 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="firstName" className="text-card-foreground">First Name</Label>
-                  <Input 
-                    type="text" 
-                    id="firstName" 
-                    name="firstName" 
-                    required 
+                  <Input
+                    type="text"
+                    id="firstName"
+                    name="firstName"
+                    required
                     placeholder="First Name"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.firstName} 
+                    defaultValue={state.fields?.firstName}
                   />
                   {getFieldError('firstName') && <p className="text-destructive text-sm mt-1">{getFieldError('firstName')}</p>}
                 </div>
                 <div>
                   <Label htmlFor="lastName" className="text-card-foreground">Last Name</Label>
-                  <Input 
-                    type="text" 
-                    id="lastName" 
-                    name="lastName" 
-                    required 
+                  <Input
+                    type="text"
+                    id="lastName"
+                    name="lastName"
+                    required
                     placeholder="Last Name"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.lastName} 
+                    defaultValue={state.fields?.lastName}
                   />
                    {getFieldError('lastName') && <p className="text-destructive text-sm mt-1">{getFieldError('lastName')}</p>}
                 </div>
@@ -151,45 +156,45 @@ export default function ContactSection() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="email" className="text-card-foreground">Email Address</Label>
-                  <Input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    required 
+                  <Input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
                     placeholder="Email Address"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.email} 
+                    defaultValue={state.fields?.email}
                   />
                   {getFieldError('email') && <p className="text-destructive text-sm mt-1">{getFieldError('email')}</p>}
                 </div>
                 <div>
-                  <Label htmlFor="phone" className="text-card-foreground">Phone Number <span className="text-xs text-muted-foreground">(Optional)</span></Label>
-                  <Input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone" 
+                  <Label htmlFor="phone" className="text-card-foreground">Phone Number <span className="text-xs text-slate-400">(Optional)</span></Label>
+                  <Input
+                    type="tel"
+                    id="phone"
+                    name="phone"
                     placeholder="Phone Number"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.phone} 
+                    defaultValue={state.fields?.phone}
                   />
                   {getFieldError('phone') && <p className="text-destructive text-sm mt-1">{getFieldError('phone')}</p>}
                 </div>
               </div>
-              
+
               <div>
                 <Label htmlFor="message" className="text-card-foreground">Message</Label>
-                <Textarea 
-                  id="message" 
-                  name="message" 
-                  rows={5} 
-                  required 
+                <Textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  required
                   placeholder="Write your message here!"
                   className="mt-1 bg-input focus:border-primary min-h-[150px]"
-                  defaultValue={state.fields?.message} 
+                  defaultValue={state.fields?.message}
                 />
                 {getFieldError('message') && <p className="text-destructive text-sm mt-1">{getFieldError('message')}</p>}
               </div>
-              <div className="flex justify-start"> {/* Aligns submit button to the left */}
+              <div className="flex justify-start">
                 <SubmitButton />
               </div>
             </form>
