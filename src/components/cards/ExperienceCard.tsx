@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import type { Experience } from '@/lib/data';
 import { Briefcase, CalendarDays, MapPin } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ExperienceCardProps {
   experience: Experience;
@@ -11,8 +12,11 @@ interface ExperienceCardProps {
 export default function ExperienceCard({ experience, animationDelay = '0s' }: ExperienceCardProps) {
   return (
     <Card 
-      className="shadow-lg hover:shadow-xl transition-shadow duration-300 animate-slideInLeft bg-card text-card-foreground w-full"
-      style={{ animationDelay }}
+      className={cn(
+        "glass-experience-card", // New class for glassmorphism and floating effect
+        "bg-card text-card-foreground w-full" // Retain base card styling for content
+      )}
+      style={{ animationDelay }} // This delay is for the parent section's animation, can be removed if conflicting
     >
       <CardHeader className="pb-3"> {/* Reduced padding bottom for header */}
         {/* Logo removed as per new design */}

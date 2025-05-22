@@ -97,7 +97,8 @@
     @apply transition-colors duration-300 ease-in-out;
   }
   div:hover {
-    @apply border-tomato;
+    /* Applying tomato border for all divs is very broad. This will be scoped by component-specific hover styles if needed. */
+    /* @apply border-tomato; */ /* Re-evaluating this global rule, prefer component-scoped hovers */
   }
 
   .nav-link-double-underline {
@@ -198,6 +199,15 @@
   }
 }
 
+@keyframes floatingExperienceCard {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 .animate-cursor-trail {
   animation: cursor-trail-fade-out 1.5s ease-out forwards;
 }
@@ -220,4 +230,62 @@
 
 .animate-shakeY {
   animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) infinite both;
+}
+
+
+/* Glassmorphism Experience Card Styles */
+.glass-experience-card {
+  position: relative;
+  overflow: hidden; /* Important for pseudo-elements */
+  background: hsl(var(--card) / 0.5); /* Semi-transparent card background */
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%); /* For Safari */
+  border: 1px solid hsl(var(--border) / 0.2);
+  animation: floatingExperienceCard 7s ease-in-out infinite;
+  transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+}
+
+.glass-experience-card::before,
+.glass-experience-card::after {
+  content: '';
+  position: absolute;
+  top: -100%; /* Start further out */
+  left: -100%;
+  width: 300%; /* Larger to cover during skew and movement */
+  height: 300%;
+  z-index: -1; /* Behind content */
+  opacity: 0.3;
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.7s ease-in-out;
+}
+
+.glass-experience-card::before {
+  background: linear-gradient(45deg, hsl(var(--primary) / 0.4), hsl(var(--accent) / 0.4) 60%, transparent 90%);
+  transform: skewX(-35deg) translateX(-150%) translateY(-50%);
+}
+
+.glass-experience-card::after {
+  background: linear-gradient(-45deg, hsl(var(--accent) / 0.3), hsl(var(--primary) / 0.3) 60%, transparent 90%);
+  transform: skewX(-35deg) translateX(50%) translateY(0%); /* Different initial position */
+  opacity: 0.25;
+}
+
+.glass-experience-card:hover {
+  transform: translateY(-5px) scale(1.02); /* Lift and slightly scale */
+  box-shadow: 0 10px 30px hsl(var(--accent) / 0.3), 0 0 20px hsl(var(--primary) / 0.2); /* Glow effect */
+}
+
+.glass-experience-card:hover::before {
+  transform: skewX(-20deg) translateX(-60%) translateY(-30%);
+  opacity: 0.5;
+}
+
+.glass-experience-card:hover::after {
+  transform: skewX(-20deg) translateX(-20%) translateY(-10%);
+  opacity: 0.4;
+}
+
+/* Ensure content within the card remains above the pseudo-elements */
+.glass-experience-card > * {
+  position: relative;
+  z-index: 1;
 }
