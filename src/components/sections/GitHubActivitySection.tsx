@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { gitHubActivityData } from '@/lib/data';
 import { Github, Star, GitFork, Activity, ExternalLink } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 export default function GitHubActivitySection() {
   const { username, totalRepositories, starsReceived, forks, contributionsLastYear, profileUrl, recentCommits } = gitHubActivityData;
@@ -57,7 +58,14 @@ export default function GitHubActivitySection() {
       )}
 
       <div className="text-center animate-slideUp" style={{ animationDelay: `${(stats.length) * 0.1 + 0.2}s` }}>
-        <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button 
+          asChild 
+          size="lg" 
+          className={cn(
+            "bg-primary text-primary-foreground hover:bg-primary/90",
+            "hover-glow-button" // Added the hover glow effect class
+          )}
+        >
           <Link href={profileUrl} target="_blank" rel="noopener noreferrer">
             <Github className="mr-2 h-5 w-5" />
             View My GitHub Profile (@{username})
