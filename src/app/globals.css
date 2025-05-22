@@ -262,6 +262,16 @@
   }
 }
 
+/* Typewriter animation for "Alex Johnson" */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: hsl(var(--accent)); }
+}
 
 .animate-cursor-trail {
   animation: cursor-trail-fade-out 1.5s ease-out forwards;
@@ -291,6 +301,16 @@
   animation: bounce-subtle 2s infinite ease-in-out;
 }
 
+.animate-typewriter-alex {
+  display: inline-block; /* Important for width animation to work correctly */
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  white-space: nowrap; /* Keeps the content on a single line */
+  border-right: .10em solid hsl(var(--accent)); /* The typewriter cursor */
+  animation:
+    typing 2s steps(12, end) 1s 1 normal both, /* 12 steps for "Alex Johnson" */
+    blink-caret .75s step-end infinite;
+  animation-delay: 0.9s; /* Delay start of typing after slideUp */
+}
 
 /* Glassmorphism Experience Card Styles */
 .glass-experience-card {
@@ -453,5 +473,7 @@
 .pulsating-field-button:hover::before {
   animation: pulsatingFieldEffect 1.5s ease-out infinite;
 }
-
-    
+div:hover {
+  border-color: hsl(9, 100%, 64%); /* tomato */
+  transition: border-color 0.3s ease-in-out;
+}

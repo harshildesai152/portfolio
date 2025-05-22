@@ -12,17 +12,15 @@ export default function HeroSection() {
     >
       <div className="space-y-8 max-w-3xl">
         <div className="glass-experience-card p-4 md:p-6 rounded-lg" style={{ animationDelay: '0.1s' }}>
-          <h1 className="text-5xl md:text-7xl font-extrabold">
-            <span className="block text-primary leading-tight animate-shakeY" style={{ animationDelay: '0.5s' }}>{developerName}</span>
+          <h1 className="text-5xl md:text-7xl font-extrabold animate-slideUp" style={{ animationDelay: '0.3s' }}>
+            <span className="block text-primary leading-tight animate-typewriter-alex font-mono" style={{ animationDelay: '0.9s' }}>{developerName}</span>
             <span className="block text-slate-300 text-3xl md:text-5xl mt-2 animate-shakeY" style={{ animationDelay: '0.7s' }}>{developerTitle}</span>
           </h1>
         </div>
-        <div className="animate-slideUp" style={{ animationDelay: '0.3s' }}>
-          <p className="text-lg md:text-xl text-slate-400 max-w-xl mx-auto p-2 rounded-md bg-black/30">
-            {developerTagline}
-          </p>
-        </div>
-        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-slideUp" style={{ animationDelay: '0.5s' }}>
+        <p className="text-lg md:text-xl text-slate-400 max-w-xl mx-auto p-2 rounded-md bg-neutral-800/60 animate-slideUp" style={{ animationDelay: '0.5s' }}>
+          {developerTagline}
+        </p>
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-slideUp" style={{ animationDelay: '0.7s' }}>
           <Button
             size="lg"
             asChild
@@ -46,7 +44,7 @@ export default function HeroSection() {
       </div>
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
         <Link href="#about" aria-label="Scroll to about section">
-          <Button variant="ghost" size="icon" className="rounded-full text-slate-300 hover:bg-slate-700/50 hover:text-white animate-bounce">
+          <Button variant="ghost" size="icon" className="rounded-full text-slate-300 hover:bg-slate-700/50 hover:text-white animate-bounce-subtle">
             <ArrowDown className="h-7 w-7" />
           </Button>
         </Link>
