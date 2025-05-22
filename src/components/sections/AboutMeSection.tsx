@@ -53,24 +53,26 @@ export default function AboutMeSection() {
           </div>
 
           {/* Right Column: Main Content */}
-          <div className="lg:col-span-2 animate-slideUp" style={{ animationDelay: '0.2s' }}>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Transforming Your Ideas into <span className="text-accent">Reality</span>
-            </h2>
-            <p className="text-lg text-muted-foreground mb-10 leading-relaxed">
+          <div className="lg:col-span-2" style={{ animationDelay: '0.2s' }}>
+            <div className="glass-experience-card p-4 md:p-6 rounded-lg mb-6">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+                Transforming Your Ideas into <span className="text-accent">Reality</span>
+              </h2>
+            </div>
+            <p className="text-lg text-muted-foreground mb-10 leading-relaxed animate-slideUp" style={{animationDelay: '0.3s'}}>
               {bio.introduction}
             </p>
 
             <div className="grid grid-cols-3 gap-6 mb-12 text-center">
               {aboutStats.map((stat, index) => (
-                <div key={index} className="animate-slideUp" style={{ animationDelay: `${0.3 + index * 0.1}s` }}>
+                <div key={index} className="animate-slideUp" style={{ animationDelay: `${0.4 + index * 0.1}s` }}>
                   <p className="text-4xl lg:text-5xl font-bold text-primary mb-1">{stat.value}</p>
                   <p className="text-xs text-muted-foreground uppercase tracking-wider">{stat.label}</p>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-12">
+            <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 animate-slideUp" style={{ animationDelay: '0.7s' }}>
               <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground w-full sm:w-auto">
                 <Link href="#contact">Let's Talk</Link>
               </Button>
@@ -108,4 +110,3 @@ export default function AboutMeSection() {
     </Section>
   );
 }
-    

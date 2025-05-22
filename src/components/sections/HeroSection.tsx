@@ -8,13 +8,15 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center bg-black text-center p-4 relative" // Added position: relative
+      className="min-h-screen flex items-center justify-center bg-black text-center p-4 relative"
     >
       <div className="space-y-8 max-w-3xl">
-        <h1 className="text-5xl md:text-7xl font-extrabold animate-slideUp" style={{ animationDelay: '0.1s' }}>
-          <span className="block text-primary leading-tight animate-shakeY" style={{ animationDelay: '0.5s' }}>{developerName}</span>
-          <span className="block text-slate-300 text-3xl md:text-5xl mt-2 animate-shakeY" style={{ animationDelay: '0.7s' }}>{developerTitle}</span>
-        </h1>
+        <div className="glass-experience-card p-4 md:p-6 rounded-lg" style={{ animationDelay: '0.1s' }}>
+          <h1 className="text-5xl md:text-7xl font-extrabold">
+            <span className="block text-primary leading-tight animate-shakeY" style={{ animationDelay: '0.5s' }}>{developerName}</span>
+            <span className="block text-slate-300 text-3xl md:text-5xl mt-2 animate-shakeY" style={{ animationDelay: '0.7s' }}>{developerTitle}</span>
+          </h1>
+        </div>
         <div className="animate-slideUp" style={{ animationDelay: '0.3s' }}>
           <p className="text-lg md:text-xl text-slate-400 max-w-xl mx-auto p-2 rounded-md bg-black/30">
             {developerTagline}
@@ -24,7 +26,7 @@ export default function HeroSection() {
           <Button
             size="lg"
             asChild
-            className="w-full sm:w-auto shadow-lg transform hover:scale-105 transition-transform duration-300 hover-glow-button"
+            className="w-full sm:w-auto shadow-lg transform hover:scale-105 transition-transform duration-300 hover-glow-button pulsating-field-button"
           >
             <a href={contactDetails.resumeUrl} target="_blank" rel="noopener noreferrer" download>
               <Download className="mr-2 h-5 w-5" /> Download Resume
@@ -34,7 +36,7 @@ export default function HeroSection() {
             variant="outline"
             size="lg"
             asChild
-            className="w-full sm:w-auto shadow-lg transform hover:scale-105 transition-transform duration-300 border-slate-300 text-slate-300 hover:bg-slate-700/50 hover:text-white hover-glow-button"
+            className="w-full sm:w-auto shadow-lg transform hover:scale-105 transition-transform duration-300 border-slate-300 text-slate-300 hover:bg-slate-700/50 hover:text-white hover-glow-button pulsating-field-button"
           >
             <Link href="#contact">
               <Send className="mr-2 h-5 w-5" /> Contact Me
@@ -52,5 +54,3 @@ export default function HeroSection() {
     </section>
   );
 }
-
-    

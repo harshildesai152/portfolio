@@ -5,7 +5,8 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import type { Project } from '@/lib/data';
-import { Github, ExternalLink, ArrowRight } from 'lucide-react'; // Added ArrowRight
+import { Github, ExternalLink, ArrowRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface ProjectCardProps {
   project: Project;
@@ -14,8 +15,14 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, animationDelay = '0s' }: ProjectCardProps) {
   return (
-    <Card className="overflow-hidden shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full animate-slideUp bg-card text-card-foreground" style={{ animationDelay }}>
-      <div className="relative w-full h-56 group"> {/* Increased image height slightly */}
+    <Card 
+      className={cn(
+        "glass-experience-card", // Applied glassmorphism style
+        "overflow-hidden flex flex-col h-full bg-card text-card-foreground"
+      )}
+      style={{ animationDelay }}
+    >
+      <div className="relative w-full h-56 group">
         <Image
           src={project.thumbnailUrl}
           alt={project.title}
@@ -41,11 +48,11 @@ export default function ProjectCard({ project, animationDelay = '0s' }: ProjectC
           )}
         </div>
       </div>
-      <CardHeader className="pt-4 pb-2"> {/* Adjusted padding */}
-        <CardTitle className="text-xl font-semibold text-primary">{project.title}</CardTitle> {/* Ensured font-semibold */}
+      <CardHeader className="pt-4 pb-2">
+        <CardTitle className="text-xl font-semibold text-primary">{project.title}</CardTitle>
       </CardHeader>
-      <CardContent className="flex-grow flex flex-col pt-0 pb-4 px-6"> {/* Adjusted padding */}
-        <CardDescription className="text-sm text-muted-foreground mb-4 flex-grow"> {/* Removed fixed height, added flex-grow */}
+      <CardContent className="flex-grow flex flex-col pt-0 pb-4 px-6">
+        <CardDescription className="text-sm text-muted-foreground mb-4 flex-grow">
           {project.description}
         </CardDescription>
         
@@ -54,11 +61,10 @@ export default function ProjectCard({ project, animationDelay = '0s' }: ProjectC
           <div className="flex flex-wrap gap-2">
             {project.techStack.map((tech, index) => (
               <Badge 
-                key={index} // Using index as key since tech names might not be unique across all projects if not careful
-                variant="outline" // Keep outline, but custom style for darker bg
+                key={index}
+                variant="outline"
                 className="text-xs bg-slate-700 text-slate-200 border-slate-600 px-2 py-0.5"
               >
-                {/* Icon removed from badge as per new design, can be added back if desired */}
                 {tech.name}
               </Badge>
             ))}
@@ -70,8 +76,6 @@ export default function ProjectCard({ project, animationDelay = '0s' }: ProjectC
           <ArrowRight className="h-4 w-4 ml-1.5 transition-transform group-hover:translate-x-1" />
         </Link>
       </CardContent>
-      {/* CardFooter removed as its content is integrated or moved */}
     </Card>
   );
 }
-
