@@ -69,10 +69,9 @@ export default function Header() {
                 variant="ghost"
                 asChild
                 className={cn(
-                  `text-foreground hover:bg-accent/10 hover:text-accent transition-colors ${
+                  `text-foreground hover:bg-accent/10 hover:text-accent transition-colors nav-link-wavy ${
                     isScrolled ? 'text-sm lg:text-base py-1 px-2' : 'text-base lg:text-lg py-2 px-3'
-                  }`,
-                  item.label === 'About' ? 'nav-link-double-underline' : ''
+                  }`
                 )}
               >
                 <Link href={item.href}>{item.label}</Link>
@@ -118,8 +117,7 @@ export default function Header() {
                       variant="ghost"
                       asChild
                       className={cn(
-                        "text-lg text-foreground hover:bg-accent/10 hover:text-accent justify-start",
-                         item.label === 'About' ? 'nav-link-double-underline' : ''
+                        "text-lg text-foreground hover:bg-accent/10 hover:text-accent justify-start nav-link-wavy"
                       )}
                       onClick={() => setMobileMenuOpen(false)}
                     >

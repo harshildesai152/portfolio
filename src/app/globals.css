@@ -130,6 +130,34 @@
   .nav-link-double-underline:hover::after {
     transform: translateX(-50%) scaleX(1); /* Grow to full width on hover */
   }
+
+  /* Wavy Underline Effect for Nav Links */
+  .nav-link-wavy {
+    position: relative;
+    overflow: visible; /* Important for pseudo-element visibility if positioned outside bounds */
+  }
+
+  .nav-link-wavy::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -1px; /* Adjust for precise positioning below text */
+    width: 0%; /* Start with 0 width, centered */
+    height: 3px; /* Height of the wavy line */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 3"><path d="M0,1.5 Q5,-1 10,1.5 T20,1.5" stroke="hsl(var(--accent))" stroke-width="1.5" fill="none"/></svg>');
+    background-repeat: repeat-x;
+    background-size: 20px 3px; /* Width of one wave cycle, and height */
+    opacity: 0;
+    transform: translateX(-50%); /* Keep it centered */
+    transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s ease-in-out;
+    animation: none; /* No flow animation initially */
+  }
+
+  .nav-link-wavy:hover::after {
+    width: 80%; /* Grow to 80% of the button's width, centered */
+    opacity: 1;
+    animation: wavy-line-flow 0.8s linear infinite alternate;
+  }
 }
 
 
@@ -207,6 +235,12 @@
     transform: translateY(-8px);
   }
 }
+
+@keyframes wavy-line-flow {
+  0% { background-position-x: 0px; }
+  100% { background-position-x: 20px; } /* Should match the background-size width for one cycle */
+}
+
 
 .animate-cursor-trail {
   animation: cursor-trail-fade-out 1.5s ease-out forwards;
@@ -333,4 +367,3 @@
   transform: rotateY(360deg);
   color: hsl(var(--primary-foreground));
 }
-
