@@ -93,14 +93,6 @@
     scroll-behavior: smooth;
   }
 
-  /* Global div hover style for border color */
-  /* div {
-    @apply transition-colors duration-300 ease-in-out;
-  }
-  div:hover {
-    @apply border-tomato;
-  } */
-
   .nav-link-double-underline {
     @apply relative py-2; /* Add some padding if not already present */
   }
@@ -211,21 +203,26 @@
 
 @keyframes cursor-trail-fade-out {
   0% { /* from */
-    background-color: hsl(var(--accent)); /* Start with accent color */
-    opacity: 0.8; /* Slightly more opaque start */
-    transform: scale(1.1) translate(-50%, -50%); /* Slightly larger start */
+    background-color: hsl(var(--accent) / 0.9); /* Start with accent color, more opaque */
+    opacity: 0.9;
+    transform: scale(1.2) translate(-50%, -50%); /* Slightly larger start */
+    width: 10px; /* Original size */
+    height: 10px; /* Original size */
   }
   50% {
-    background-color: hsl(var(--primary)); /* Transition to primary color mid-way */
-    opacity: 0.4;
-    transform: scale(0.6) translate(-50%, -50%); /* Smaller than initial, larger than end */
+    background-color: hsl(var(--primary) / 0.6); /* Transition to primary color mid-way, less opaque */
+    opacity: 0.5;
+    transform: scale(0.7) translate(-50%, -50%); /* Smaller */
   }
   100% { /* to */
-    background-color: hsl(var(--primary)); /* End with primary color (will be invisible due to opacity) */
+    background-color: hsl(var(--primary) / 0); /* End with primary color (fully transparent) */
     opacity: 0;
-    transform: scale(0.2) translate(-50%, -50%); /* Smallest and faded out */
+    transform: scale(0.3) translate(-50%, -50%); /* Smallest and faded out */
+    width: 5px; /* End smaller */
+    height: 5px; /* End smaller */
   }
 }
+
 
 @keyframes floatingExperienceCard {
   0%, 100% {
@@ -239,6 +236,30 @@
 @keyframes wavy-line-flow {
   0% { background-position-x: 0px; }
   100% { background-position-x: 20px; } /* Should match the background-size width for one cycle */
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulsatingFieldEffect {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
 }
 
 
@@ -264,6 +285,10 @@
 
 .animate-shakeY {
   animation: shakeY 0.8s cubic-bezier(.36,.07,.19,.97) infinite both;
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s infinite ease-in-out;
 }
 
 
@@ -367,3 +392,66 @@
   transform: rotateY(360deg);
   color: hsl(var(--primary-foreground));
 }
+
+/* Hover Glow Button Effect */
+.hover-glow-button {
+  @apply relative inline-flex items-center justify-center; /* Base button styles */
+  /* Ensure button's own transitions for background/color are smooth */
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms; /* Adjust as needed for the button's own active state transition */
+}
+
+.hover-glow-button > * { /* Text and icon inside the button */
+  @apply relative z-10; /* Keeps content above the ::before pseudo-element */
+}
+
+.hover-glow-button::before {
+  content: '';
+  @apply absolute -inset-1; /* Makes the pseudo-element slightly larger than the button */
+  background: linear-gradient(60deg, hsl(var(--primary) / 0.8), hsl(var(--accent) / 0.8));
+  @apply rounded-md; /* Match button's border-radius. Shadcn lg buttons use rounded-md */
+  z-index: -1; /* Position behind the button's content */
+  filter: blur(10px); /* Creates the soft glow */
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.hover-glow-button:hover::before {
+  @apply opacity-100; /* Show glow on hover */
+}
+
+.hover-glow-button:active {
+  background-color: hsl(var(--primary)) !important; /* Fill with primary color on click */
+  color: black !important; /* Text color black on click, as requested */
+}
+
+.hover-glow-button:active svg {
+  stroke: black !important; /* Ensure SVG icons also turn black if they use stroke */
+  fill: black !important; /* Ensure SVG icons also turn black if they use fill */
+  color: black !important; /* For icons that might inherit color like text */
+}
+
+/* Pulsating Field Effect for Hero Buttons */
+.pulsating-field-button {
+  @apply relative overflow-visible; /* Allow pseudo-element to extend outwards */
+}
+
+.pulsating-field-button::before {
+  content: '';
+  @apply absolute top-1/2 left-1/2;
+  width: 100%;
+  height: 100%;
+  background-color: hsl(var(--accent) / 0.4); /* Use accent color with some transparency */
+  border-radius: inherit; /* Match button's border-radius */
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0;
+  z-index: -1; /* Behind the button content */
+  pointer-events: none; /* Ensure it doesn't interfere with button clicks */
+}
+
+.pulsating-field-button:hover::before {
+  animation: pulsatingFieldEffect 1.5s ease-out infinite;
+}
+
+    
