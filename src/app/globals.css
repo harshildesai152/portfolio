@@ -307,9 +307,9 @@
   white-space: nowrap; /* Keeps the content on a single line */
   border-right: .10em solid hsl(var(--accent)); /* The typewriter cursor */
   animation:
-    typing 2s steps(12, end) 1s 1 normal both, /* 12 steps for "Alex Johnson" */
+    typing 2s steps(12, end) 1s infinite normal both, /* Loop typing, 12 steps for "Alex Johnson" */
     blink-caret .75s step-end infinite;
-  animation-delay: 0.9s; /* Delay start of typing after slideUp */
+  /* The overall animation-delay for the group will be handled by the style prop on the element */
 }
 
 /* Glassmorphism Experience Card Styles */
@@ -477,3 +477,4 @@ div:hover {
   border-color: hsl(9, 100%, 64%); /* tomato */
   transition: border-color 0.3s ease-in-out;
 }
+
