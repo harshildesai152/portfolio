@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { faqItems } from '@/lib/data';
+import { cn } from '@/lib/utils';
 
 export default function FAQSection() {
   if (!faqItems || faqItems.length === 0) {
@@ -17,12 +18,19 @@ export default function FAQSection() {
   }
 
   return (
-    <Section id="faq" className="bg-background">
+    <Section 
+      id="faq" 
+      className={cn(
+        "glass-experience-card" // Applied glassmorphism style to the section container
+        // Removed "bg-background" to let the glass-experience-card background take effect
+      )}
+    >
       <SectionTitle>
         Frequently Asked <span className="text-accent">Questions</span>
       </SectionTitle>
       <div className="max-w-3xl mx-auto">
-        <Accordion type="single" collapsible className="w-full space-y-4">
+        {/* Ensure content inside the glass card is relatively positioned if needed, or has higher z-index if overlapping issues occur */}
+        <Accordion type="single" collapsible className="w-full space-y-4 relative z-10">
           {faqItems.map((item, index) => (
             <AccordionItem
               key={item.id}
