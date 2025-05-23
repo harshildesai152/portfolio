@@ -31,7 +31,6 @@ export async function submitContactForm(
 
   if (!parsed.success) {
     const issues = parsed.error.issues.map((issue) => issue.message);
-    // Map field-specific errors to a more user-friendly format if needed
     const fieldErrors: Record<string, string | undefined> = {};
     parsed.error.issues.forEach(issue => {
       if (issue.path.length > 0) {
@@ -42,14 +41,53 @@ export async function submitContactForm(
     return {
       message: "Invalid form data. Please check the fields below.",
       fields: formData as Record<string, string>,
-      issues, // You can pass specific field issues too if your UI handles them
+      issues,
       success: false,
     };
   }
 
-  // In a real application, you would send an email or save to a database here.
-  // For this example, we'll just log it and return a success message.
-  console.log("Contact form submitted:", parsed.data);
+  // In a real application, you would integrate an Email Service Provider (ESP)
+  // like Resend, SendGrid, AWS SES, etc., to send the email.
+  // For example, using Resend (after installing `resend` and setting up API keys):
+  //
+  // import { Resend } from 'resend';
+  // const resend = new Resend(process.env.RESEND_API_KEY);
+  // try {
+  //   await resend.emails.send({
+  //     from: 'Your App <noreply@yourdomain.com>',
+  //     to: 'harshildesai152@gmail.com',
+  //     subject: 'New Contact Form Submission',
+  //     html: `
+  //       <p><strong>Name:</strong> ${parsed.data.firstName} ${parsed.data.lastName}</p>
+  //       <p><strong>Email:</strong> ${parsed.data.email}</p>
+  //       ${parsed.data.phone ? `<p><strong>Phone:</strong> ${parsed.data.phone}</p>` : ''}
+  //       <p><strong>Message:</strong></p>
+  //       <p>${parsed.data.message}</p>
+  //     `,
+  //   });
+  // } catch (error) {
+  //   console.error("Failed to send email:", error);
+  //   return {
+  //     message: "Form submitted, but there was an error sending the email. Please try again later.",
+  //     success: false, // Or true, depending on whether you want to inform the user of the send failure
+  //   };
+  // }
+
+  // For now, we'll just log the details that would be sent.
+  console.log("--- Contact Form Submission ---");
+  console.log("To: harshildesai152@gmail.com");
+  console.log("From (Sender):", parsed.data.email);
+  console.log("Subject: New Contact Form Submission");
+  console.log("Body:");
+  console.log(`  First Name: ${parsed.data.firstName}`);
+  console.log(`  Last Name: ${parsed.data.lastName}`);
+  console.log(`  Email: ${parsed.data.email}`);
+  if (parsed.data.phone) {
+    console.log(`  Phone: ${parsed.data.phone}`);
+  }
+  console.log(`  Message: ${parsed.data.message}`);
+  console.log("---------------------------------");
+
 
   return {
     message: "Thank you for your message! I'll get back to you soon.",
