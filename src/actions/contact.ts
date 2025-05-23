@@ -2,6 +2,7 @@
 "use server";
 
 import { z } from 'zod';
+import nodemailer from 'nodemailer';
 
 const contactFormSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required." }).max(50, { message: "First name must be 50 characters or less." }),
@@ -46,51 +47,76 @@ export async function submitContactForm(
     };
   }
 
-  // In a real application, you would integrate an Email Service Provider (ESP)
-  // like Resend, SendGrid, AWS SES, etc., to send the email.
-  // For example, using Resend (after installing `resend` and setting up API keys):
-  //
-  // import { Resend } from 'resend';
-  // const resend = new Resend(process.env.RESEND_API_KEY);
-  // try {
-  //   await resend.emails.send({
-  //     from: 'Your App <noreply@yourdomain.com>',
-  //     to: 'harshildesai152@gmail.com',
-  //     subject: 'New Contact Form Submission',
-  //     html: `
-  //       <p><strong>Name:</strong> ${parsed.data.firstName} ${parsed.data.lastName}</p>
-  //       <p><strong>Email:</strong> ${parsed.data.email}</p>
-  //       ${parsed.data.phone ? `<p><strong>Phone:</strong> ${parsed.data.phone}</p>` : ''}
-  //       <p><strong>Message:</strong></p>
-  //       <p>${parsed.data.message}</p>
-  //     `,
-  //   });
-  // } catch (error) {
-  //   console.error("Failed to send email:", error);
-  //   return {
-  //     message: "Form submitted, but there was an error sending the email. Please try again later.",
-  //     success: false, // Or true, depending on whether you want to inform the user of the send failure
-  //   };
-  // }
+  const { firstName, lastName, email, phone, message } = parsed.data;
 
-  // For now, we'll just log the details that would be sent.
-  console.log("--- Contact Form Submission ---");
-  console.log("To: harshildesai152@gmail.com");
-  console.log("From (Sender):", parsed.data.email);
-  console.log("Subject: New Contact Form Submission");
-  console.log("Body:");
-  console.log(`  First Name: ${parsed.data.firstName}`);
-  console.log(`  Last Name: ${parsed.data.lastName}`);
-  console.log(`  Email: ${parsed.data.email}`);
-  if (parsed.data.phone) {
-    console.log(`  Phone: ${parsed.data.phone}`);
+  // Email sending logic
+  if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
+    console.error("Gmail credentials (GMAIL_USER, GMAIL_PASS) are not set in environment variables.");
+    return {
+      message: "Server configuration error: Email credentials not set. Please contact support.",
+      success: false,
+    };
   }
-  console.log(`  Message: ${parsed.data.message}`);
-  console.log("---------------------------------");
 
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_PASS, // Use an App Password here
+    },
+  });
 
-  return {
-    message: "Thank you for your message! I'll get back to you soon.",
-    success: true,
+  const mailOptions = {
+    from: `"${firstName} ${lastName} via Portfolio" <${process.env.GMAIL_USER}>`,
+    replyTo: email,
+    to: 'harshildesai152@gmail.com',
+    subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+    text: `
+      You have received a new message from your portfolio contact form:
+
+      First Name: ${firstName}
+      Last Name: ${lastName}
+      Email: ${email}
+      Phone: ${phone || 'Not provided'}
+      
+      Message:
+      ${message}
+    `,
+    html: `
+      <h3>New Contact Form Submission</h3>
+      <p><strong>From:</strong> ${firstName} ${lastName}</p>
+      <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+      ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
+      <p><strong>Message:</strong></p>
+      <p>${message.replace(/\n/g, '<br>')}</p>
+    `,
   };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully to harshildesai152@gmail.com');
+    return {
+      message: "Thank you for your message! I'll get back to you soon.",
+      success: true,
+    };
+  } catch (error) {
+    console.error("Failed to send email:", error);
+    let userErrorMessage = "An unexpected error occurred while sending your message. Please try again later or contact me directly.";
+    
+    // Check for specific Nodemailer/Gmail errors
+    if (error instanceof Error) {
+        const nodeError = error as NodeJS.ErrnoException; // Type assertion for common error properties
+        if (nodeError.message?.includes('Invalid login') || (nodeError as any).responseCode === 535) {
+            userErrorMessage = "Authentication failed on the server. Please contact the site administrator.";
+             console.error("Nodemailer authentication error: Invalid login or App Password. Check GMAIL_USER and GMAIL_PASS.");
+        } else if (nodeError.message?.includes('ETIMEDOUT') || nodeError.message?.includes('ENOTFOUND')) {
+            userErrorMessage = "Could not connect to the email server. Please try again later.";
+        }
+    }
+    
+    return {
+      message: userErrorMessage,
+      success: false,
+    };
+  }
 }
