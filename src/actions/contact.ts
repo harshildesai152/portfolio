@@ -1,6 +1,7 @@
 
 "use server";
 
+import 'dotenv/config'; // Ensure environment variables are loaded
 import { z } from 'zod';
 import nodemailer from 'nodemailer';
 
