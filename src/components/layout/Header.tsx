@@ -2,7 +2,7 @@
 "use client";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet'; // Added SheetTitle
 import { Menu, CodeXml, Sun, Moon } from 'lucide-react';
 import { developerName } from '@/lib/data';
 import { useState, useEffect } from 'react';
@@ -19,7 +19,7 @@ const navItems = [
   { href: '#github-activity', label: 'GitHub' },
   { href: '#testimonials', label: 'Testimonials' },
   { href: '#contact', label: 'Contact' },
-  { href: '#faq', label: 'FAQ' }, // New nav item
+  { href: '#faq', label: 'FAQ' },
 ];
 
 export default function Header() {
@@ -110,6 +110,7 @@ export default function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[280px] bg-background p-6">
+                <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle> 
                 <nav className="flex flex-col space-y-4 mt-8">
                   {navItems.map((item) => (
                     <Button
