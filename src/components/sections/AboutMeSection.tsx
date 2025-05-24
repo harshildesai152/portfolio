@@ -84,10 +84,10 @@ export default function AboutMeSection() {
             </div>
 
             <div className="animate-slideUp" style={{ animationDelay: '0.8s' }}>
-              <p className="text-sm text-muted-foreground mb-6 text-center lg:text-left">
+              {/* <p className="text-sm text-muted-foreground mb-6 text-center lg:text-left">
                 Relied on by companies near, far, and worldwide
-              </p>
-              <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 items-center">
+              </p> */}
+              {/* <div className="flex flex-wrap justify-center lg:justify-start gap-x-8 gap-y-4 items-center">
                 {companyLogos.map((logo) => (
                   <div
                     key={logo.name}
@@ -102,7 +102,7 @@ export default function AboutMeSection() {
                     />
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

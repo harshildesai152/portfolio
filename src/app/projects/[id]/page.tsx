@@ -66,8 +66,12 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <CardContent className="p-6 md:p-8">
             <h3 className="text-2xl font-semibold text-foreground mb-4">{project.title} - Overview</h3>
             <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-              {project.description}
+                <li>{project.description} </li>
             </CardDescription>
+{/*              
+          <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+              <li>{project.description} </li>
+         </CardDescription> */}
 
             {project.galleryImageUrls && project.galleryImageUrls.length > 0 && (
               <div className="mt-10 pt-8 border-t border-border">

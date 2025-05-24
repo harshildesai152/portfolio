@@ -25,7 +25,8 @@ export default function EducationSection() {
                 <GraduationCap className="h-6 w-6 mr-2 text-accent" />
                 {edu.degree}
               </CardTitle>
-              <CardDescription className="text-md text-muted-foreground">{edu.university}</CardDescription>
+              <CardDescription className="text-md font-semibold  text-foreground">{edu.university}</CardDescription>
+              <CardDescription className="text-md text-muted-foreground">{edu.des}</CardDescription>
               <p className="text-xs text-muted-foreground mt-1 flex items-center">
                 <CalendarDays className="h-3 w-3 mr-1" />
                 {edu.years}

@@ -1,7 +1,19 @@
 
 import type { LucideIcon } from 'lucide-react';
-import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain, Lightbulb, Database, Server, Code, MonitorPlay, Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Dribbble, Instagram, ArrowRight, Activity, Star, GitFork, GraduationCap, FolderKanban } from 'lucide-react';
-
+import { Github, Linkedin, Twitter, Briefcase, Users, Zap, Brain,SquareChevronRight , Lightbulb, Database, Server, Code, MonitorPlay,Rotate3d ,Webhook ,BookMinus,Speech , Construction, Palette, GitMerge, Container, FileText, Mail, MapPin, CheckCircle, ShieldCheck, Rocket, BrainCircuit, Layers, Component, Cloud, UsersRound, TrendingUp, Package, PackageCheck, Award, Dribbble, Instagram, ArrowRight, Activity, Star, GitFork, GraduationCap, FolderKanban } from 'lucide-react';
+import myImage from '../image/my.jpg';
+import project1 from '../image/Screenshot 2024-07-13 131735.png';
+import project2 from '../image/Screenshot 2024-07-13 131749.png';
+import project3 from '../image/Screenshot 2024-07-13 134104.png';
+import project4 from '../image/Screenshot 2024-07-13 134301.png';
+import project5 from '../image/Screenshot 2024-07-13 132537.png';
+import project6 from '../image/Screenshot 2025-05-24 114707.png';
+import project7 from '../image/Screenshot 2025-05-24 124202.png';
+import project8 from '../image/Screenshot 2025-05-24 124022.png';
+import project9 from '../image/Screenshot 2025-05-24 124037.png';
+import project10 from '../image/Screenshot 2025-05-24 124058.png';
+import project11 from '../image/Screenshot 2025-05-24 124112.png';
+import project12 from '../image/Screenshot 2025-05-24 124150.png';
 export type Skill = {
   name: string;
   icon: LucideIcon;
@@ -36,6 +48,7 @@ export type Experience = {
 export type EducationItem = {
   degree: string;
   university: string;
+  des: string;
   years: string;
   achievements?: string[];
 };
@@ -88,53 +101,69 @@ export type FAQItem = {
 };
 
 
-export const developerName = "Alex Johnson";
+export const developerName = "Harshil Desai";
 export const developerTitle = "Software Engineer";
 export const developerTagline = "Building digital experiences that are intuitive, efficient, and impactful.";
 
 export const bio = {
   introduction: "Passionate about creating intuitive and engaging user experiences. Specialize in transforming ideas into beautifully crafted products.",
-  profilePictureUrl: "https://images.unsplash.com/photo-1556157382-97eda2d62296?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwcm9maWxlJTIwaW1hZ2V8ZW58MHx8fHwxNzQ3NTc2ODM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+  profilePictureUrl: myImage,
   profilePictureAiHint: "professional portrait",
 };
 
 export const aboutStats: AboutStat[] = [
-  { value: "+12", label: "Years of Experience" },
-  { value: "+46", label: "Projects Completed" },
-  { value: "+20", label: "Worldwide Clients" },
+  { value: "+4", label: "Month of Experience" },
+  { value: "+5", label: "Projects Completed" },
+  { value: "+2", label: "Worldwide Clients" },
 ];
 
 export const skills = {
   frontend: [
     { name: "React", icon: Component },
     { name: "Next.js", icon: Layers },
-    { name: "TypeScript", icon: Code },
+    { name: "Express js", icon: SquareChevronRight  },
+    { name: "javaScript ", icon: Code },
     { name: "Tailwind CSS", icon: Palette },
     { name: "HTML5", icon: Code },
     { name: "CSS3", icon: Palette },
+  ] as Skill[],
+   Languages: [
+    { name: "C", icon: Component },
+    { name: "C++", icon: Layers },
+    { name: "Python", icon: SquareChevronRight  },
+    { name: "Java ", icon: Code },
   ] as Skill[],
   backend: [
     { name: "Node.js", icon: Server },
     { name: "Express.js", icon: Server },
     { name: "Python", icon: Code },
-    { name: "Django", icon: Server },
+    // { name: "Django", icon: Server },
   ] as Skill[],
   databases: [
     { name: "MongoDB", icon: Database },
-    { name: "PostgreSQL", icon: Database },
-    { name: "Firebase", icon: Cloud },
+    { name: "MySQL", icon: Cloud },
+    // { name: "Firebase", icon: Cloud },
   ] as Skill[],
   devops: [
-    { name: "Docker", icon: Container },
-    { name: "AWS", icon: Cloud },
+    // { name: "Docker", icon: Container },
+    // { name: "AWS", icon: Cloud },
     { name: "Git", icon: GitMerge },
-    { name: "CI/CD", icon: Package },
+    { name: "GitHub", icon: Package },
   ] as Skill[],
   tools: [
     { name: "VS Code", icon: MonitorPlay },
     { name: "GitHub", icon: Github },
-    { name: "Jira", icon: Construction },
+    // { name: "Jira", icon: Construction },
     { name: "Figma", icon: Palette },
+  ] as Skill[],
+  Libraries: [
+    { name: "NumPy", icon: BrainCircuit },
+    { name: "pandas", icon: Github },
+    // { name: "Jira", icon: Construction },
+    { name: "GUI", icon: BookMinus },
+    { name: "pyttsx3", icon: Speech  },
+    { name: "redux", icon: Webhook  },
+    { name: "Axios", icon: Rotate3d },
   ] as Skill[],
 };
 
@@ -142,172 +171,190 @@ export const projects: Project[] = [
   {
     id: "proj1",
     title: "E-commerce Platform",
-    description: "A full-featured e-commerce website with product listings, cart functionality, user authentication, and an admin panel for managing inventory and orders. This project involved a deep dive into user experience design, secure payment gateway integration, and efficient state management for a seamless shopping experience. Scalability was a key consideration, leading to the adoption of microservices for certain backend functionalities.",
-    thumbnailUrl: "https://images.unsplash.com/photo-1707553513157-4dfd44e857e8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxFJTIwY29tbWVyY2UlMjBwbGF0Zm9ybXxlbnwwfHx8fDE3NDc1NzcyNDV8MA&ixlib=rb-4.1.0&q=80&w=1080",
+    description: " E-Commerce Website | Developed an Admin Dashboard for product management, inventory control,and review and comments management, including payment integration using Stripe. UtilizedCloudinary for uploading, storing, and optimizing product images.Implemented user authenticationfor sign-up, login, password reset, and profile management. Added features for product search andfilters, shopping cart functionality, and the ability for users to view their purchase history and order details",
+    thumbnailUrl: project1 ,
     thumbnailAiHint: "e-commerce products",
-    techStack: [skills.frontend[0], skills.frontend[1], skills.backend[0], skills.databases[0]],
-    githubUrl: "https://github.com/yourusername/ecommerce-platform",
+    techStack: [skills.frontend[0], skills.frontend[2], skills.backend[0], skills.databases[0]],
+    githubUrl: "https://github.com/harraycoder/E-comm",
     demoUrl: "#",
     category: "Web Apps",
     galleryImageUrls: [
-      { url: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxOXx8RS1jb21tZXJjZSUyMCUyMHdlYnNpdGV8ZW58MHx8fHwxNzQ3NTgzNDM2fDA&ixlib=rb-4.1.0&q=80&w=1080', aiHint: 'product detail page' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'user checkout process' },
-      { url: 'https://images.unsplash.com/photo-1501504905252-473c47e087f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxNXx8RS1jb21tZXJjZSUyMCUyMHdlYnNpdGV8ZW58MHx8fHwxNzQ3NTgzNDM2fDA&ixlib=rb-4.1.0&q=80&w=1080', aiHint: 'admin dashboard interface' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'mobile responsive view' },
+      { url: project2},
+      { url: project3, aiHint: 'user checkout process' },
+      { url: project4, aiHint: 'admin dashboard interface' },
+      { url: project5, aiHint: 'mobile responsive view' },
     ],
   },
-  {
+  { 
     id: "proj2",
-    title: "Task Management API",
-    description: "A RESTful API for managing tasks, users, and projects, built with Node.js and Express, featuring JWT authentication and comprehensive test coverage using Jest and Supertest. The API supports CRUD operations for all resources, real-time updates via WebSockets for collaborative features, and role-based access control to ensure data security and integrity. Documentation was generated using Swagger/OpenAPI.",
+    title: " Speech To Recognize",  
+    description: " Speech To Recognize | Developed an intelligent speech recognition assistant using Python, which recognized and processed specific voice commands to execute tasks. Utilized libraries such as SpeechRecognition, PyAudio, and pydub for audio processing and speech recognition. Implemented real- time speech recognition, text-to-speech, web automation, email handling, YouTube video downloading, and GUI automation.",
     thumbnailUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxOXx8JTJGZSUyMGNvbWVzZSUyMHdlYnNpdGV8ZW58MHx8fHwxNzQ3NTc2MDA1fDA&ixlib=rb-4.1.0&q=80&w=1080",
     thumbnailAiHint: "api code",
-    techStack: [skills.backend[0], skills.backend[1], skills.databases[1]],
-    githubUrl: "https://github.com/yourusername/task-api",
+    techStack: [skills.backend[2]],
+    githubUrl: "https://github.com/harraycoder/personal-assistant-",
     category: "APIs",
     galleryImageUrls: [
-      { url: 'https://placehold.co/600x400.png', aiHint: 'api endpoint example' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'database schema diagram' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'code snippet' },
+      { url: project6 , aiHint: 'api endpoint example' },
+      // { url: 'https://placehold.co/600x400.png', aiHint: 'database schema diagram' },
+      // { url: 'https://placehold.co/600x400.png', aiHint: 'code snippet' },
     ],
   },
   {
     id: "proj3",
-    title: "Portfolio Website v2",
-    description: "The very website you are currently viewing! Built with Next.js and Tailwind CSS, showcasing my skills and projects in a responsive design. Leverages server-side rendering for improved SEO and performance, and features a clean, modern UI with smooth animations. Implemented a custom theme switcher and a dynamic project detail page. The focus was on creating a performant and visually appealing showcase of my capabilities.",
-    thumbnailUrl: "https://images.unsplash.com/photo-1528716321680-815a8cdb8cbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMnx8UG9ydGZvbGlvJTIwV2Vic2l0ZSUyMHYyfGVufDB8fHx8MTc0NzU3NjE3NXww&ixlib=rb-4.1.0&q=80&w=1080",
+    title: "Movie Website",
+    description: " Created intuitive navigation, engaging visual elements, and efficient layout structures for a movie website. Utilized libraries like Google Fonts and frameworks like Bootstrap for enhanced functionality and design. Implemented interactive features such as sliders, video controls, and navigation menus.",
+    thumbnailUrl: project9,
     thumbnailAiHint: "portfolio website",
-    techStack: [skills.frontend[0], skills.frontend[1], skills.frontend[3]],
-    githubUrl: "https://github.com/yourusername/portfolio-v2",
+    techStack: [skills.frontend[5], skills.frontend[6], skills.frontend[3]],
+    githubUrl: "https://github.com/harraycoder/poka-movie",
     category: "Web Apps",
     galleryImageUrls: [
-      { url: 'https://placehold.co/600x400.png', aiHint: 'dark mode' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'projects section' },
+      { url: project7, aiHint: 'dark mode' },
+      { url: project8, aiHint: 'dark mode' },
+      { url: project9, aiHint: 'dark mode' },
+      { url: project10, aiHint: 'dark mode' },
+      { url: project11, aiHint: 'dark mode' },
+      { url: project12, aiHint: 'dark mode' },
+  
     ],
   },
-  {
-    id: "proj4",
-    title: "AI Content Generator",
-    description: "A proof-of-concept application using OpenAI's API to generate blog post ideas and short content snippets based on user prompts. The application features a simple interface for users to input keywords or topics, and it then interacts with the Genkit AI to produce creative and relevant content suggestions. This project explored prompt engineering techniques and the integration of large language models into web applications.",
-    thumbnailUrl: "https://images.unsplash.com/photo-1665623544684-3069fb6457e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbCUyMGNvbnRlbnQlMjBnZW5lcmF0b3J8ZW58MHx8fHwxNzQ3NTc3NTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
-    thumbnailAiHint: "ai interface",
-    techStack: [skills.frontend[0], skills.backend[2], { name: "Genkit", icon: BrainCircuit }],
-    githubUrl: "https://github.com/yourusername/ai-content-gen",
-    demoUrl: "#",
-    category: "ML",
-    galleryImageUrls: [
-      { url: 'https://placehold.co/600x400.png', aiHint: 'input form example' },
-      { url: 'https://placehold.co/600x400.png', aiHint: 'content output' },
-    ],
-  },
+  // {
+  //   id: "proj4",
+  //   title: "AI Content Generator",
+  //   description: "A proof-of-concept application using OpenAI's API to generate blog post ideas and short content snippets based on user prompts. The application features a simple interface for users to input keywords or topics, and it then interacts with the Genkit AI to produce creative and relevant content suggestions. This project explored prompt engineering techniques and the integration of large language models into web applications.",
+  //   thumbnailUrl: "https://images.unsplash.com/photo-1665623544684-3069fb6457e9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbCUyMGNvbnRlbnQlMjBnZW5lcmF0b3J8ZW58MHx8fHwxNzQ3NTc3NTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+  //   thumbnailAiHint: "ai interface",
+  //   techStack: [skills.frontend[0], skills.backend[2], { name: "Genkit", icon: BrainCircuit }],
+  //   githubUrl: "https://github.com/yourusername/ai-content-gen",
+  //   demoUrl: "#",
+  //   category: "ML",
+  //   galleryImageUrls: [
+  //     { url: 'https://placehold.co/600x400.png', aiHint: 'input form example' },
+  //     { url: 'https://placehold.co/600x400.png', aiHint: 'content output' },
+  //   ],
+  // },
 ];
 
 export const experiences: Experience[] = [
   {
-    role: "Senior Frontend Developer",
-    company: "Tech Innovations Inc.",
-    duration: "Jan 2022 - Present",
-    location: "San Francisco, CA",
+    role: "Full Stack Developer Internship",
+    company: "ClavierLabs",
+    duration: "may 2024",
+    location: "Surat, India",
     responsibilities: [
-      "Lead a team of 5 developers in building modern web applications using React, TypeScript, and NextJS.",
-      "Reduced page load time by 40% through performance optimizations and code splitting.",
-      "Implemented CI/CD pipelines that decreased deployment time by 60%.",
-      "Mentored junior developers and conducted code reviews to ensure quality standards.",
+      " Worked on a Full-stack E-commerce application using Node.js for backend API calls, MongoDB for  database connectivity, React.js, and Redux for frontend state management",
+      "Used Redux to store filter options and dispatch actions to fetch updated product lists based on user input.",
+      "Built a Redux store for the cart with actions to add, remove, and update quantity of products.",
+      "Admin Dashboard for managing products, inventory, and reviews, with Stripe payment integration and Cloudinary for image storage.",
     ],
   },
   {
-    role: "Full Stack Developer",
-    company: "Digital Solutions Ltd.",
-    duration: "Mar 2020 - Dec 2021",
-    location: "Boston, MA",
+    role: "Frontend Developer Intern",
+    company: " LetMeGrab E-Platform Private Limited",
+    duration: "Jan 2025 ",
+    location: "Surat, India",
     responsibilities: [
-      "Developed and maintained RESTful APIs using Node.js and Express.",
-      "Created responsive frontend interfaces with React and Material UI.",
-      "Implemented authentication and authorization using JWT and OAuth.",
-      "Designed and managed MongoDB databases for multiple projects.",
+      " I am currently working as a React.js Developer Intern, specializing in the development and enhancement of dynamic web interfaces utilizing React.js, Next.js, and Redux.",
+      "Engineered key features including dynamic slug generation, server-side pagination for enhanced SEO and performance.",
+      "Optimized component rendering through efficient state and prop management. Utilized props to pass data into a reusable common filter component, improving code modularity and reusability.",
+      "Integrated encryption/decryption techniques to ensure secure data handling. Collaborated in an agile environment, contributing to feature development and code reviews.",
     ],
   },
-  {
-    role: "Junior Web Developer",
-    company: "StartUp Vision",
-    duration: "Jun 2018 - Feb 2020",
-    location: "Remote",
-    responsibilities: [
-        "Collaborated with design and product teams to create user-friendly web interfaces.",
-        "Maintained and updated existing codebases, fixing bugs and improving functionality.",
-        "Assisted in implementing responsive designs and ensuring cross-browser compatibility.",
-        "Participated in code reviews and team meetings to improve development processes."
-    ],
-  },
+  // {
+  //   role: "Junior Web Developer",
+  //   company: "StartUp Vision",
+  //   duration: "Jan 2025 - Feb 2020",
+  //   location: "Remote",
+  //   responsibilities: [
+  //       "Collaborated with design and product teams to create user-friendly web interfaces.",
+  //       "Maintained and updated existing codebases, fixing bugs and improving functionality.",
+  //       "Assisted in implementing responsive designs and ensuring cross-browser compatibility.",
+  //       "Participated in code reviews and team meetings to improve development processes."
+  //   ],
+  // },
 ];
 
 export const education: EducationItem[] = [
   {
-    degree: "Master of Science in Computer Science",
-    university: "Stanford University",
-    years: "2019 - 2021",
-    achievements: ["Graduated with Distinction", "Thesis on Scalable Distributed Systems"],
+    degree: "Bachelor of Engineering ",
+    university: " Madhuben and Bhanubhai Patel Institute of Technology, CVM University",
+    des:"I pursued my Bachelor of Engineering in Computer Engineering atMadhuben and Bhanubhai Patel Institute of Technology, a reputed institution under Charutar Vidya Mandal  (CVM University). During the course of my studies from 2021 to 2025, , I built a solid grounding in programming, algorithms, software engineering, and modern technologies such as machine learning and web development. The curriculum offered a balanced mix of academic theory and practical exposure through real-world projects, internships, and workshops aligned with current industry trends.",
+    years: "2021 - 2025",
+    achievements: ["Additional course on Emerging Technologies by SAP, Edunet Foundation, Code Unnati", 
+      // "Thesis on Scalable Distributed Systems"
+    ],
   },
   {
-    degree: "Bachelor of Science in Software Engineering",
-    university: "University of California, Berkeley",
-    years: "2015 - 2019",
-    achievements: ["Dean's List (4 semesters)", "Lead Developer for Capstone Project"],
+    degree: "HSC - Science Stream (Mathematics)",
+    university: "Ashadeep IIT | Gujarat Secondary and Higher Secondary Education Board (GSEB)",
+    des:"I completed my higher secondary education in the Science stream with Mathematics from Ashadeep IIT. During this period, I developed a strong interest in problem-solving, logical thinking, and analytical skills, which laid the foundation for my journey into engineering. Alongside my academic curriculum, I prepared for competitive exams such as JEE (Joint Entrance Examination) and GUJCET (Gujarat Common Entrance Test).",
+    years: "2019 - 2020",
+    
   },
 ];
 
 export const certifications: Certification[] = [
   {
     id: "cert1",
-    name: "AWS Certified Solutions Architect - Associate",
-    issuingOrganization: "Amazon Web Services (AWS)",
-    date: "Issued: Mar 2023",
+    name: " Google Cloud Skills Boost",
+    issuingOrganization: "Prepare Data for ML APIs on Google Cloud",
+    date: "Issued: Oct , 2023",
     credentialUrl: "https://www.credly.com/your-badge-url-1",
     icon: Award,
-    description: "Validated ability to design and deploy well-architected solutions on AWS.",
+    description: "Complete the introductory Prepare Data for ML APIs on Google Cloud skill badge to demonstrate skills in the following: cleaning data with Dataprep by Trifacta, running data pipelines in Dataflow, creating clusters and running Apache Spark jobs in Dataproc, and calling ML APIs including the Cloud Natural Language API, Google Cloud Speech-to-Text API, and Video Intelligence API. A skill badge is an exclusive digital badge issued by Google Cloud in recognition of your proficiency with Google Cloud products and services and tests your ability to apply your knowledge in an interactive hands-on environment. Complete this skill badge course, and the final assessment challenge lab, to receive a skill badge that you can share with your network.",
   },
   {
     id: "cert2",
-    name: "Certified Kubernetes Administrator (CKA)",
-    issuingOrganization: "The Linux Foundation & CNCF",
-    date: "Issued: Sep 2022",
+    name: " Google Cloud Skills Boost",
+    issuingOrganization: " Google Cloud Computing Foundations: Networking & Security in Google Cloud",
+    date: "Issued: Oct , 2023",
     credentialUrl: "https://www.credly.com/your-badge-url-2",
     icon: Award,
-    description: "Demonstrated expertise in managing and administering Kubernetes clusters.",
+    description: "The Google Cloud Computing Foundations courses are for individuals with little to no background or experience in cloud computing. They provide an overview of concepts central to cloud basics, big data, and machine learning, and where and how Google Cloud fits in. By the end of the series of courses, learners will be able to articulate these concepts and demonstrate some hands-on skills. The courses should be completed in the following order: 1. Google Cloud Computing Foundations: Cloud Computing Fundamentals 2. Google Cloud Computing Foundations: Infrastructure in Google Cloud 3. Google Cloud Computing Foundations: Networking and Security in Google Cloud 4. Google Cloud Computing Foundations: Data, ML, and AI in Google Cloud This third course covers cloud automation and management tools and building secure networks.",
   },
   {
     id: "cert3",
-    name: "Professional Scrum Master I (PSM I)",
-    issuingOrganization: "Scrum.org",
-    date: "Issued: Jun 2021",
+    name: " Google Cloud Computing Foundations: Cloud Computing Fundamentals",
+    issuingOrganization: "Cloud Computing Fundamentals",
+    date: "Issued: Oct , 2023",
     credentialUrl: "https://www.scrum.org/your-badge-url-3", // Added placeholder URL
     icon: PackageCheck,
-    description: "Proficiency in Scrum principles, practices, and the role of the Scrum Master.",
+    description: "The Google Cloud Computing Foundations courses are for individuals with little to no background or experience in cloud computing. They provide an overview of concepts central to cloud basics, big data, and machine learning, and where and how Google Cloud fits in. By the end of the series of courses, learners will be able to articulate these concepts and demonstrate some hands-on skills. The courses should be completed in the following order: 1. Google Cloud Computing Foundations: Cloud Computing Fundamentals 2. Google Cloud Computing Foundations: Infrastructure in Google Cloud 3. Google Cloud Computing Foundations: Networking and Security in Google Cloud 4. Google Cloud Computing Foundations: Data, ML, and AI in Google Cloud This first course provides an overview of cloud computing, ways to use Google Cloud, and different compute options.",
+  },
+    {
+    id: "cert4",
+    name: "  Emerging Technologies by SAP, Edunet Foundation",
+    issuingOrganization: "Code Unnati",
+    date: "Issued: may , 2023",
+    credentialUrl: "https://www.scrum.org/your-badge-url-3", // Added placeholder URL
+    icon: PackageCheck,
+    description: " Emerging Technologies by SAP, Edunet Foundation, Code Unnati This course provided valuable insights into the latest emerging technologies like Machine Learning, Deep Learning, Computer Vision and loT with Raspberry Pl and Groove PI with integration of some amazing sensors and their practical applications across different sectors. I am excited to apply this knowledge to drive innovation and create impactful solutions.",
   },
 ];
 
 export const socialLinks = [
-  { name: "GitHub", url: "https://github.com/yourusername", icon: Github },
-  { name: "LinkedIn", url: "https://linkedin.com/in/yourusername", icon: Linkedin },
-  { name: "Dribbble", url: "#", icon: Dribbble },
-  { name: "Twitter", url: "https://twitter.com/yourusername", icon: Twitter },
-  { name: "Instagram", url: "#", icon: Instagram },
-  { name: "Email", url: "mailto:alex.johnson@example.com", icon: Mail },
+  { name: "GitHub", url: "https://github.com/harraycoder", icon: Github },
+  { name: "LinkedIn", url: "https://linkedin.com/in/harshil-desai-aba792284", icon: Linkedin },
+  // { name: "Dribbble", url: "#", icon: Dribbble },
+  // { name: "Twitter", url: "https://twitter.com/yourusername", icon: Twitter },
+  { name: "Instagram", url: "https://www.instagram.com/harshil_desai_?igsh=N3E5cnk3bTVjeHpq", icon: Instagram },
+  { name: "Email", url: "mailto:harshildesai152@gmail.com", icon: Mail },
 ];
 
 export const contactDetails = {
-  email: "alex.johnson@example.com",
+  email: "harshildesai152@gmail.com",
   resumeUrl: "/placeholder-resume.pdf",
-  location: "San Francisco, CA",
+  location: "Surat, India",
 };
 
 export const gitHubActivityData: GitHubActivity = {
   username: "yourusername",
-  totalRepositories: 75,
-  starsReceived: 320,
-  forks: 150,
-  contributionsLastYear: 1200,
-  profileUrl: "https://github.com/yourusername",
+  totalRepositories: 5,
+  starsReceived: 0,
+  forks: 5,
+  contributionsLastYear: 6,
+  profileUrl: "https://github.com/harshil-desai-aba792284",
   recentCommits: [
     { message: "feat: Implement new user authentication flow", repo: "ecommerce-platform", url: "#" },
     { message: "fix: Resolve critical bug in payment processing", repo: "ecommerce-platform", url: "#" },
@@ -355,11 +402,11 @@ export const companyLogos: CompanyLogo[] = [
 ];
 
 export const faqItems: FAQItem[] = [
-  {
-    id: "faq1",
-    question: "What services do you offer?",
-    answer: "I offer a range of services including custom web development, frontend and backend solutions, API development, and UI/UX design consulting. My goal is to build scalable and high-performing digital products tailored to client needs."
-  },
+  // {
+  //   id: "faq1",
+  //   question: "What services do you offer?",
+  //   answer: "I offer a range of services including custom web development, frontend and backend solutions, API development, and UI/UX design consulting. My goal is to build scalable and high-performing digital products tailored to client needs."
+  // },
   {
     id: "faq2",
     question: "What is your design process?",

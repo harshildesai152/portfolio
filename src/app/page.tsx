@@ -22,7 +22,7 @@ export default function Home() {
       <EducationSection />
       <CertificationsSection />
       <GitHubActivitySection />
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
       <ContactSection />
       <FAQSection /> {/* Added new section */}
     </>

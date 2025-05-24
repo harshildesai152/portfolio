@@ -45,7 +45,7 @@ export default function GitHubActivitySection() {
           )}
           style={{ animationDelay: `${(stats.length) * 0.1 + 0.1}s` }}
         >
-          <CardHeader>
+          {/* <CardHeader>
             <CardTitle className="text-xl text-primary">Recent Commits</CardTitle>
           </CardHeader>
           <CardContent>
@@ -58,8 +58,8 @@ export default function GitHubActivitySection() {
                   </Link>
                 </li>
               ))}
-            </ul>
-          </CardContent>
+            </ul> 
+          </CardContent>  */}
         </Card>
       )}
 
@@ -74,7 +74,7 @@ export default function GitHubActivitySection() {
         >
           <Link href={profileUrl} target="_blank" rel="noopener noreferrer">
             <Github className="mr-2 h-5 w-5" />
-            View My GitHub Profile (@{username})
+            View My GitHub Profile 
           </Link>
         </Button>
       </div>

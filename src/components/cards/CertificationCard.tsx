@@ -46,7 +46,7 @@ export default function CertificationCard({ certification, animationDelay = '0s'
             </p>
         )}
       </CardContent>
-      {certification.credentialUrl && certification.credentialUrl !== "#" && (
+      {/* {certification.credentialUrl && certification.credentialUrl !== "#" && (
         <CardFooter className="pt-0 mt-auto pb-4 px-6">
           <Button variant="outline" size="sm" asChild className="border-primary text-primary hover:bg-primary/10 w-full">
             <Link href={certification.credentialUrl} target="_blank" rel="noopener noreferrer">
@@ -55,7 +55,7 @@ export default function CertificationCard({ certification, animationDelay = '0s'
             </Link>
           </Button>
         </CardFooter>
-      )}
+      )} */}
     </Card>
   );
 }

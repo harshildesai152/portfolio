@@ -69,8 +69,8 @@ export async function submitContactForm(
 
   const mailOptions = {
     from: `"${firstName} ${lastName} via Portfolio" <${process.env.GMAIL_USER}>`,
-    replyTo: email,
-    to: 'harshildesai152@gmail.com',
+     replyTo: email,
+    to: 'codebomber2@gmail.com',
     subject: `New Contact Form Submission from ${firstName} ${lastName}`,
     text: `
       You have received a new message from your portfolio contact form:
