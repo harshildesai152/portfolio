@@ -19,7 +19,7 @@ export default function Footer() {
             ))}
           </div>
         </div>
-        <div className="mt-6 text-center text-xs text-muted-foreground">
+{/*         <div className="mt-6 text-center text-xs text-muted-foreground">
           Quick Links:
           <Link href="#about" className="hover:text-accent px-2">About</Link>|
           <Link href="#skills" className="hover:text-accent px-2">Skills</Link>|
@@ -30,8 +30,8 @@ export default function Footer() {
           <Link href="#github-activity" className="hover:text-accent px-2">GitHub</Link>|
           <Link href="#testimonials" className="hover:text-accent px-2">Testimonials</Link>|
           <Link href="#contact" className="hover:text-accent px-2">Contact</Link>|
-          <Link href="#faq" className="hover:text-accent px-2">FAQ</Link> {/* New link */}
-        </div>
+          <Link href="#faq" className="hover:text-accent px-2">FAQ</Link> {/* New link 
+        </div> */}
       </div>
     </footer>
   );
