@@ -10,16 +10,17 @@ import { useTheme } from '@/components/providers/ThemeProvider';
 import { cn } from '@/lib/utils';
 
 const navItems = [
-  { href: '#about', label: 'About' },
+  
   { href: '#skills', label: 'Skills' },
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#education', label: 'Education' },
-  { href: '#certifications', label: 'Certifications' },
-  { href: '#github-activity', label: 'GitHub' },
-  { href: '#testimonials', label: 'Testimonials' },
-  { href: '#contact', label: 'Contact' },
-  { href: '#faq', label: 'FAQ' },
+  { href: '#about', label: 'About' },
+  // { href: '#certifications', label: 'Certifications' },
+  // { href: '#github-activity', label: 'GitHub' },
+  // { href: '#testimonials', label: 'Testimonials' },
+  // { href: '#contact', label: 'Contact' },
+  // { href: '#faq', label: 'FAQ' },
 ];
 
 export default function Header() {
