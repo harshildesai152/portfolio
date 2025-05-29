@@ -239,7 +239,7 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     role: "Full Stack Developer Internship",
-    company: "ClavierLabs",
+    company: "ACCELATE INNOVATIONS LLP",
     duration: "may 2024",
     location: "Surat, India",
     responsibilities: [
@@ -251,7 +251,7 @@ export const experiences: Experience[] = [
   },
   {
     role: "Frontend Developer Intern",
-    company: " LetMeGrab E-Platform Private Limited",
+    company: " ACCELATE INNOVATIONS LLP",
     duration: "Jan 2025 ",
     location: "Surat, India",
     responsibilities: [
