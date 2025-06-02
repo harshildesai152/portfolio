@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'CodeCanvas - Software Engineer Portfolio',
+  title: 'Harshil Desai - Software Engineer Portfolio',
   description: 'Portfolio of a skilled and passionate software engineer showcasing experience, skills, and projects.',
 };
 
