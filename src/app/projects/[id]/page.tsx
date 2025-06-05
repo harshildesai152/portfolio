@@ -69,9 +69,9 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                 <li>{project.description} </li>
             </CardDescription>
              
-          <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
+          {/* <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
               <li>{project.description} </li>
-         </CardDescription> 
+         </CardDescription>  */}
 
             {project.galleryImageUrls && project.galleryImageUrls.length > 0 && (
               <div className="mt-10 pt-8 border-t border-border">
@@ -120,6 +120,13 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
     </div>
   );
 }
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
 
 // Optional: Add generateStaticParams for better performance if your project list is static
 // export async function generateStaticParams() {
