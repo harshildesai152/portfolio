@@ -1,9 +1,9 @@
 
-"use server";
+// "use server"; // Removed for static export compatibility
 
-import 'dotenv/config'; // Ensure environment variables are loaded
 import { z } from 'zod';
-import nodemailer from 'nodemailer';
+// import nodemailer from 'nodemailer'; // Removed: Not available in browser/static export
+// import 'dotenv/config'; // Removed: Not available/relevant in browser/static export
 
 const contactFormSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required." }).max(50, { message: "First name must be 50 characters or less." }),
@@ -24,8 +24,8 @@ export type ContactFormState = {
   success: boolean;
 };
 
+// Adjusted to be a regular async function
 export async function submitContactForm(
-  prevState: ContactFormState,
   data: FormData
 ): Promise<ContactFormState> {
   const formData = Object.fromEntries(data);
@@ -48,31 +48,40 @@ export async function submitContactForm(
     };
   }
 
-  const { firstName, lastName, email, phone, message } = parsed.data;
+  // const { firstName, lastName, email, phone, message } = parsed.data;
 
-  // Email sending logic
+  // Email sending logic is removed/commented out for static export compatibility.
+  // Nodemailer cannot run in the browser environment of a static site.
+  // For a functional contact form on GitHub Pages, use a third-party service like Formspree.
+
+  /*
+  // IMPORTANT: This block will NOT work correctly when run client-side in a static export.
+  // process.env variables will not be available as expected, and nodemailer cannot run in the browser.
   if (!process.env.GMAIL_USER || !process.env.GMAIL_PASS) {
-    console.error("Gmail credentials (GMAIL_USER, GMAIL_PASS) are not set in environment variables.");
+    console.error("Gmail credentials (GMAIL_USER, GMAIL_PASS) are not set or accessible in this environment.");
+    // This message might be misleading on the client-side as process.env works differently.
     return {
       message: "Server configuration error: Email credentials not set. Please contact support.",
       success: false,
     };
   }
 
-  const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS, // Use an App Password here
-    },
-  });
+  try {
+    // This nodemailer logic will fail if executed in the browser.
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS,
+      },
+    });
 
-  const mailOptions = {
-    from: `"${firstName} ${lastName} via Portfolio" <${process.env.GMAIL_USER}>`,
-     replyTo: email,
-    to: 'codebomber2@gmail.com',
-    subject: `New Contact Form Submission from ${firstName} ${lastName}`,
-    text: `
+    const mailOptions = {
+      from: `"${firstName} ${lastName} via Portfolio" <${process.env.GMAIL_USER}>`,
+      replyTo: email,
+      to: 'codebomber2@gmail.com', // Updated recipient
+      subject: `New Contact Form Submission from ${firstName} ${lastName}`,
+      text: `
       You have received a new message from your portfolio contact form:
 
       First Name: ${firstName}
@@ -83,7 +92,7 @@ export async function submitContactForm(
       Message:
       ${message}
     `,
-    html: `
+      html: `
       <h3>New Contact Form Submission</h3>
       <p><strong>From:</strong> ${firstName} ${lastName}</p>
       <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
@@ -91,27 +100,25 @@ export async function submitContactForm(
       <p><strong>Message:</strong></p>
       <p>${message.replace(/\n/g, '<br>')}</p>
     `,
-  };
+    };
 
-  try {
     await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully to harshildesai152@gmail.com');
+    console.log('Email sending attempted to codebomber2@gmail.com (will only succeed in Node.js env).');
     return {
       message: "Thank you for your message! I'll get back to you soon.",
       success: true,
     };
   } catch (error) {
-    console.error("Failed to send email:", error);
+    console.error("Failed to send email (this error is expected if running client-side):", error);
     let userErrorMessage = "An unexpected error occurred while sending your message. Please try again later or contact me directly.";
     
-    // Check for specific Nodemailer/Gmail errors
     if (error instanceof Error) {
-        const nodeError = error as NodeJS.ErrnoException; // Type assertion for common error properties
+        const nodeError = error as NodeJS.ErrnoException; 
         if (nodeError.message?.includes('Invalid login') || (nodeError as any).responseCode === 535) {
             userErrorMessage = "Authentication failed on the server. Please contact the site administrator.";
              console.error("Nodemailer authentication error: Invalid login or App Password. Check GMAIL_USER and GMAIL_PASS.");
-        } else if (nodeError.message?.includes('ETIMEDOUT') || nodeError.message?.includes('ENOTFOUND')) {
-            userErrorMessage = "Could not connect to the email server. Please try again later.";
+        } else if (nodeError.message?.includes('ETIMEDOUT') || nodeError.message?.includes('ENOTFOUND') || nodeError.message?.includes('getaddrinfo ENOTFOUND smtp.gmail.com')) {
+            userErrorMessage = "Could not connect to the email server. This is expected if running on a static site. Please try again later.";
         }
     }
     
@@ -120,4 +127,12 @@ export async function submitContactForm(
       success: false,
     };
   }
+  */
+
+  // For static export, we simulate success after validation
+  console.warn("Contact form submitted in static mode. Email sending is disabled. Form data:", parsed.data);
+  return {
+    message: "Thank you for your message! I'll get back to you soon. (Note: Email sending is disabled in this demo version).",
+    success: true,
+  };
 }

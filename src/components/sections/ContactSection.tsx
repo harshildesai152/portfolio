@@ -1,8 +1,7 @@
 
 "use client";
 
-import { useActionState, useEffect } from 'react';
-import { useFormStatus } from 'react-dom';
+import { useState, useEffect, useTransition, useRef } from 'react'; // Removed useActionState, useFormStatus. Added useState, useTransition, useRef.
 import Link from 'next/link';
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
@@ -12,22 +11,21 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { submitContactForm, type ContactFormState } from '@/actions/contact';
+import { submitContactForm, type ContactFormState } from '@/actions/contact'; // submitContactForm is now a regular async function
 import { socialLinks, contactDetails } from '@/lib/data';
 import { Mail, MapPin, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
+function SubmitButton({ isPending }: { isPending: boolean }) { // Changed to accept isPending prop
   return (
     <Button
       type="submit"
-      disabled={pending}
+      disabled={isPending}
       variant="link"
       className="text-2xl font-semibold text-primary hover:text-accent p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 group mt-4"
     >
-      {pending ? 'Sending...' : 'Submit'}
+      {isPending ? 'Sending...' : 'Submit'}
       <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
     </Button>
   );
@@ -36,34 +34,62 @@ function SubmitButton() {
 export default function ContactSection() {
   const { toast } = useToast();
   const initialState: ContactFormState = { message: '', issues: [], fields: {}, success: false };
-  const [state, formAction] = useActionState(submitContactForm, initialState);
+  
+  const [currentFormState, setCurrentFormState] = useState<ContactFormState>(initialState);
+  const [isPending, startTransition] = useTransition();
+  const formRef = useRef<HTMLFormElement>(null);
+
 
   useEffect(() => {
-    if (state.message) {
-      if (state.success) {
+    if (currentFormState.message && !isPending) { // Added !isPending check to avoid showing toast while submitting
+      if (currentFormState.success) {
         toast({
           title: "Success!",
-          description: state.message,
+          description: currentFormState.message,
         });
-      } else if (state.issues && state.issues.length > 0) {
+        formRef.current?.reset(); // Reset form on success
+        setCurrentFormState(initialState); // Reset state
+      } else if (currentFormState.issues && currentFormState.issues.length > 0) {
          toast({
           title: "Error",
-          description: state.issues.join('\\n') || state.message,
+          description: currentFormState.issues.join('\\n') || currentFormState.message,
           variant: "destructive",
         });
-      } else if (!state.success && state.message) {
+      } else if (!currentFormState.success && currentFormState.message) {
          toast({
           title: "Error",
-          description: state.message,
+          description: currentFormState.message,
           variant: "destructive",
         });
       }
     }
-  }, [state, toast]);
+  }, [currentFormState, toast, isPending]);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    
+    // Preserve field values for re-population in case of error
+    const currentFields: Record<string, string> = {};
+    formData.forEach((value, key) => {
+      currentFields[key] = value as string;
+    });
+    setCurrentFormState(prev => ({...prev, fields: currentFields, message: '', issues: [] }));
+
+
+    startTransition(async () => {
+      // IMPORTANT: The following call to submitContactForm contains server-side Node.js code (nodemailer, process.env).
+      // This WILL LIKELY FAIL at runtime when deployed to a static hosting service like GitHub Pages,
+      // as it cannot execute Node.js code in the browser.
+      // For GitHub Pages, consider using a third-party form service (e.g., Formspree).
+      const result = await submitContactForm(formData);
+      setCurrentFormState(result);
+    });
+  };
 
   const getFieldError = (fieldName: string) => {
-    if (state.issues && state.fields && state.fields[fieldName] !== undefined) {
-      const fieldSpecificIssue = state.issues.find(issue =>
+    if (currentFormState.issues && currentFormState.fields && currentFormState.fields[fieldName] !== undefined) {
+      const fieldSpecificIssue = currentFormState.issues.find(issue =>
         issue.toLowerCase().includes(fieldName.replace(/([A-Z])/g, ' $1').toLowerCase().trim())
       );
       return fieldSpecificIssue;
@@ -78,7 +104,7 @@ export default function ContactSection() {
       <div className="grid md:grid-cols-2 gap-12 items-start">
         <Card 
           className={cn(
-            "glass-experience-card", // Applied glassmorphism style
+            "glass-experience-card",
             "shadow-lg bg-card text-card-foreground"
           )}
           style={{ animationDelay: '0.2s' }}
@@ -127,7 +153,7 @@ export default function ContactSection() {
 
         <Card 
           className={cn(
-            "glass-experience-card", // Applied glassmorphism style
+            "glass-experience-card",
             "shadow-lg bg-card text-card-foreground"
           )}
           style={{ animationDelay: '0.4s' }}
@@ -136,7 +162,7 @@ export default function ContactSection() {
             <CardTitle className="text-2xl text-primary">Send a Message</CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={formAction} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="firstName" className="text-card-foreground">First Name</Label>
@@ -147,7 +173,7 @@ export default function ContactSection() {
                     required
                     placeholder="First Name"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.firstName}
+                    defaultValue={currentFormState.fields?.firstName}
                   />
                   {getFieldError('firstName') && <p className="text-destructive text-sm mt-1">{getFieldError('firstName')}</p>}
                 </div>
@@ -160,7 +186,7 @@ export default function ContactSection() {
                     required
                     placeholder="Last Name"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.lastName}
+                    defaultValue={currentFormState.fields?.lastName}
                   />
                    {getFieldError('lastName') && <p className="text-destructive text-sm mt-1">{getFieldError('lastName')}</p>}
                 </div>
@@ -176,7 +202,7 @@ export default function ContactSection() {
                     required
                     placeholder="Email Address"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.email}
+                    defaultValue={currentFormState.fields?.email}
                   />
                   {getFieldError('email') && <p className="text-destructive text-sm mt-1">{getFieldError('email')}</p>}
                 </div>
@@ -188,7 +214,7 @@ export default function ContactSection() {
                     name="phone"
                     placeholder="Phone Number"
                     className="mt-1 bg-input focus:border-primary"
-                    defaultValue={state.fields?.phone}
+                    defaultValue={currentFormState.fields?.phone}
                   />
                   {getFieldError('phone') && <p className="text-destructive text-sm mt-1">{getFieldError('phone')}</p>}
                 </div>
@@ -203,12 +229,12 @@ export default function ContactSection() {
                   required
                   placeholder="Write your message here!"
                   className="mt-1 bg-input focus:border-primary min-h-[150px]"
-                  defaultValue={state.fields?.message}
+                  defaultValue={currentFormState.fields?.message}
                 />
                 {getFieldError('message') && <p className="text-destructive text-sm mt-1">{getFieldError('message')}</p>}
               </div>
               <div className="flex justify-start">
-                <SubmitButton />
+                <SubmitButton isPending={isPending} />
               </div>
             </form>
           </CardContent>
