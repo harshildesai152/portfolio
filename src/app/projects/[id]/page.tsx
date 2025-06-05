@@ -8,6 +8,15 @@ import { Badge } from '@/components/ui/badge';
 import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
 // Section component is not used on this page, so no need to import.
 
+export const dynamic = 'force-static'; // ✅ Important for static export
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
+
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
   const project = projects.find(p => p.id === params.id);
 
@@ -121,11 +130,6 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
   );
 }
 
-export async function generateStaticParams() {
-  return projects.map((project) => ({
-    id: project.id,
-  }));
-}
 
 
 // Optional: Add generateStaticParams for better performance if your project list is static
