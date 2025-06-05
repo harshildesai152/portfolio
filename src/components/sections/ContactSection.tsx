@@ -136,7 +136,7 @@ export default function ContactSection() {
             <CardTitle className="text-2xl text-primary">Send a Message</CardTitle>
           </CardHeader>
           <CardContent>
-            <form action={formAction} className="space-y-6">
+            <form onSubmit={formAction} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="firstName" className="text-card-foreground">First Name</Label>
