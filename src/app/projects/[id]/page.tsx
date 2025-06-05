@@ -68,10 +68,10 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
             <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
                 <li>{project.description} </li>
             </CardDescription>
-{/*              
+             
           <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
               <li>{project.description} </li>
-         </CardDescription> */}
+         </CardDescription> 
 
             {project.galleryImageUrls && project.galleryImageUrls.length > 0 && (
               <div className="mt-10 pt-8 border-t border-border">
