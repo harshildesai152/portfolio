@@ -1,18 +1,29 @@
-
 import type {NextConfig} from 'next';
 
-// Determine if the build is running in GitHub Actions
-const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+// IMPORTANT: Replace 'YOUR_REPOSITORY_NAME' with your actual GitHub repository name
+// if deploying to a subpath on GitHub Pages (e.g., your-username.github.io/your-repo-name).
+// If deploying to a custom domain or the root (your-username.github.io),
+// you can leave this as an empty string, or a value like 'YOUR_REPOSITORY_NAME'
+// which will then cause useSubpath to be false.
+const repoName = 'https://harshildesai152.github.io/portfolio/';; // <<<< ------ YOU MUST UPDATE THIS!!
 
-// IMPORTANT: Replace 'YOUR_REPOSITORY_NAME' with your actual GitHub repository name.
-// For example, if your repository URL is https://github.com/your-username/my-portfolio,
-// then repoName should be 'my-portfolio'.
-const repoName = 'https://harshildesai152.github.io/portfolio/';
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Only set basePath and assetPrefix if repoName is meaningfully set
+// AND we are in a production build context.
+const useSubpath = isProduction && repoName && repoName !== 'YOUR_REPOSITORY_NAME' && repoName !== '';
 
 const nextConfig: NextConfig = {
   output: 'export', // Explicitly set for static HTML export
-  basePath: isGithubActions ? `/${repoName}` : '',
-  assetPrefix: isGithubActions ? `/${repoName}/` : '',
+
+  // basePath should start with a slash if used.
+  // It's the path your app will be accessible from (e.g., /your-repo-name).
+  basePath: useSubpath ? `/${repoName}` : '',
+
+  // assetPrefix is used for loading assets (JS, CSS, images) from that path.
+  // It should end with a slash if used.
+  assetPrefix: useSubpath ? `/${repoName}/` : '',
+
   typescript: {
     ignoreBuildErrors: true,
   },
