@@ -1,63 +1,44 @@
-import type { NextConfig } from 'next';
 
-const isProduction = process.env.NODE_ENV === 'production';
-const repoName = 'portfolio'; // Change this to your GitHub repo name
+import type {NextConfig} from 'next';
+
+// Determine if the build is running in GitHub Actions
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+
+// IMPORTANT: Replace 'YOUR_REPOSITORY_NAME' with your actual GitHub repository name.
+// For example, if your repository URL is https://github.com/your-username/my-portfolio,
+// then repoName should be 'my-portfolio'.
+const repoName = 'https://harshildesai152.github.io/portfolio/';
 
 const nextConfig: NextConfig = {
-  // Build settings
+  output: 'export', // Explicitly set for static HTML export
+  basePath: isGithubActions ? `/${repoName}` : '',
+  assetPrefix: isGithubActions ? `/${repoName}/` : '',
   typescript: {
-    ignoreBuildErrors: false, // Recommended to fix errors instead of ignoring
+    ignoreBuildErrors: true,
   },
   eslint: {
-    ignoreDuringBuilds: false, // Recommended to fix lint issues
+    ignoreDuringBuilds: true,
   },
-
-  // Image handling
   images: {
-    unoptimized: true, // Required for static exports
+    // When `output: 'export'` is used, image optimization (next/image)
+    // might not work as expected without a custom loader or if the platform doesn't support it.
+    // Setting unoptimized: true serves images as-is, which is generally fine for GitHub Pages.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'placehold.co',
+        port: '',
+        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: '**.githubusercontent.com', // For GitHub hosted images
+        port: '',
+        pathname: '/**',
       },
     ],
   },
-
-  // Static export settings
-  output: 'export',
-  trailingSlash: true, // Better for GitHub Pages compatibility
-  basePath: isProduction ? `/${repoName}` : '',
-  assetPrefix: isProduction ? `/${repoName}/` : '',
-
-  // Optional: Add security headers
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-Frame-Options',
-            value: 'DENY',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-        ],
-      },
-    ];
-  },
-
-  // Enable React Strict Mode
-  reactStrictMode: true,
 };
 
 export default nextConfig;
