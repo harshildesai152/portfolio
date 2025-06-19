@@ -1,17 +1,20 @@
 import type { NextConfig } from 'next';
 
+const isProduction = process.env.NODE_ENV === 'production';
+const repoName = 'portfolio'; // Change this to your GitHub repo name
+
 const nextConfig: NextConfig = {
-  // Build optimizations
+  // Build settings
   typescript: {
-    ignoreBuildErrors: true, // ⚠️ Only for temporary builds (fix TS errors later)
+    ignoreBuildErrors: false, // Recommended to fix errors instead of ignoring
   },
   eslint: {
-    ignoreDuringBuilds: true, // ⚠️ Only for temporary builds (fix linting later)
+    ignoreDuringBuilds: false, // Recommended to fix lint issues
   },
 
-  // Image handling (static export compatible)
+  // Image handling
   images: {
-    unoptimized: true, // Required for `output: 'export'`
+    unoptimized: true, // Required for static exports
     remotePatterns: [
       {
         protocol: 'https',
@@ -21,14 +24,40 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.githubusercontent.com', // For GitHub hosted images
+      },
     ],
   },
 
   // Static export settings
-  output: 'export', // ✅ Generates static HTML files
-  trailingSlash: true, // ✅ Ensures consistent URLs
-  basePath: process.env.NODE_ENV === 'production' ? '/portfolio' : '', // ✅ Conditional basePath
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio/' : '', // ✅ Conditional assetPrefix
+  output: 'export',
+  trailingSlash: true, // Better for GitHub Pages compatibility
+  basePath: isProduction ? `/${repoName}` : '',
+  assetPrefix: isProduction ? `/${repoName}/` : '',
+
+  // Optional: Add security headers
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'DENY',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+        ],
+      },
+    ];
+  },
+
+  // Enable React Strict Mode
+  reactStrictMode: true,
 };
 
 export default nextConfig;
