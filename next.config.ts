@@ -1,32 +1,34 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Build optimizations
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // ⚠️ Only for temporary builds (fix TS errors later)
   },
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // ⚠️ Only for temporary builds (fix linting later)
   },
+
+  // Image handling (static export compatible)
   images: {
-    unoptimized: true, // ✅ Disable sharp to avoid build error
+    unoptimized: true, // Required for `output: 'export'`
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
       },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
       },
     ],
   },
-  output: 'export',              // ✅ Enable static export
-  basePath: '/portfolio',        // ✅ Must match your repo name
-  assetPrefix: '/portfolio/',    // ✅ Required for correct asset paths
+
+  // Static export settings
+  output: 'export', // ✅ Generates static HTML files
+  trailingSlash: true, // ✅ Ensures consistent URLs
+  basePath: process.env.NODE_ENV === 'production' ? '/portfolio' : '', // ✅ Conditional basePath
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/portfolio/' : '', // ✅ Conditional assetPrefix
 };
 
 export default nextConfig;
