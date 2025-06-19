@@ -12,27 +12,12 @@ export async function generateStaticParams() {
   }));
 }
 
-export const dynamicParams = false; // Show 404 for unknown project IDs
-
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
   const project = projects.find(p => p.id === params.id);
 
   if (!project) {
-    return (
-      <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-3xl font-bold text-destructive mb-4">Project Not Found</h1>
-        <p className="text-muted-foreground mb-8">
-          The project you are looking for does not exist or has been moved.
-        </p>
-        <Button asChild>
-          <Link href="/#projects">
-            <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Projects
-          </Link>
-        </Button>
-      </div>
-    );
+    notFound();
   }
-
   return (
     <div className="bg-background text-foreground py-12">
       <div className="container mx-auto px-4">
