@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useActionState, useEffect } from 'react';
-import { useFormStatus } from 'react-dom';
+// import { useActionState, useEffect } from 'react';
+// import { useFormStatus } from 'react-dom';
 import Link from 'next/link';
 import Section from '@/components/shared/Section';
 import SectionTitle from '@/components/shared/SectionTitle';
@@ -18,58 +18,58 @@ import { Mail, MapPin, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <Button
-      type="submit"
-      disabled={pending}
-      variant="link"
-      className="text-2xl font-semibold text-primary hover:text-accent p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 group mt-4"
-    >
-      {pending ? 'Sending...' : 'Submit'}
-      <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
-    </Button>
-  );
-}
+// function SubmitButton() {
+//   const { pending } = useFormStatus();
+//   return (
+//     <Button
+//       type="submit"
+//       disabled={pending}
+//       variant="link"
+//       className="text-2xl font-semibold text-primary hover:text-accent p-0 h-auto focus-visible:ring-0 focus-visible:ring-offset-0 group mt-4"
+//     >
+//       {pending ? 'Sending...' : 'Submit'}
+//       <ArrowRight className="ml-2 h-6 w-6 transition-transform group-hover:translate-x-1" />
+//     </Button>
+//   );
+// }
 
 export default function ContactSection() {
-  const { toast } = useToast();
-  const initialState: ContactFormState = { message: '', issues: [], fields: {}, success: false };
-  const [state, formAction] = useActionState(submitContactForm, initialState);
+  // const { toast } = useToast();
+  // const initialState: ContactFormState = { message: '', issues: [], fields: {}, success: false };
+  // const [state, formAction] = useActionState(submitContactForm, initialState);
 
-  useEffect(() => {
-    if (state.message) {
-      if (state.success) {
-        toast({
-          title: "Success!",
-          description: state.message,
-        });
-      } else if (state.issues && state.issues.length > 0) {
-         toast({
-          title: "Error",
-          description: state.issues.join('\\n') || state.message,
-          variant: "destructive",
-        });
-      } else if (!state.success && state.message) {
-         toast({
-          title: "Error",
-          description: state.message,
-          variant: "destructive",
-        });
-      }
-    }
-  }, [state, toast]);
+  // useEffect(() => {
+  //   if (state.message) {
+  //     if (state.success) {
+  //       toast({
+  //         title: "Success!",
+  //         description: state.message,
+  //       });
+  //     } else if (state.issues && state.issues.length > 0) {
+  //        toast({
+  //         title: "Error",
+  //         description: state.issues.join('\\n') || state.message,
+  //         variant: "destructive",
+  //       });
+  //     } else if (!state.success && state.message) {
+  //        toast({
+  //         title: "Error",
+  //         description: state.message,
+  //         variant: "destructive",
+  //       });
+  //     }
+  //   }
+  // }, [state, toast]);
 
-  const getFieldError = (fieldName: string) => {
-    if (state.issues && state.fields && state.fields[fieldName] !== undefined) {
-      const fieldSpecificIssue = state.issues.find(issue =>
-        issue.toLowerCase().includes(fieldName.replace(/([A-Z])/g, ' $1').toLowerCase().trim())
-      );
-      return fieldSpecificIssue;
-    }
-    return undefined;
-  };
+  // const getFieldError = (fieldName: string) => {
+  //   if (state.issues && state.fields && state.fields[fieldName] !== undefined) {
+  //     const fieldSpecificIssue = state.issues.find(issue =>
+  //       issue.toLowerCase().includes(fieldName.replace(/([A-Z])/g, ' $1').toLowerCase().trim())
+  //     );
+  //     return fieldSpecificIssue;
+  //   }
+  //   return undefined;
+  // };
 
 
   return (
@@ -124,7 +124,7 @@ export default function ContactSection() {
             </div>
           </CardContent>
         </Card>
-
+{/* 
         <Card 
           className={cn(
             "glass-experience-card", // Applied glassmorphism style
@@ -212,7 +212,7 @@ export default function ContactSection() {
               </div>
             </form>
           </CardContent>
-        </Card>
+        </Card> */}
       </div>
     </Section>
   );
