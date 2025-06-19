@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { projects } from '@/lib/data';
@@ -6,7 +5,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Github, ExternalLink, ArrowLeft } from 'lucide-react';
-// Section component is not used on this page, so no need to import.
+
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    id: project.id,
+  }));
+}
+
+export const dynamicParams = false; // Show 404 for unknown project IDs
 
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
   const project = projects.find(p => p.id === params.id);
@@ -66,12 +72,8 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <CardContent className="p-6 md:p-8">
             <h3 className="text-2xl font-semibold text-foreground mb-4">{project.title} - Overview</h3>
             <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-                <li>{project.description} </li>
+              <li>{project.description}</li>
             </CardDescription>
-{/*              
-          <CardDescription className="text-base md:text-lg text-muted-foreground leading-relaxed whitespace-pre-line">
-              <li>{project.description} </li>
-         </CardDescription> */}
 
             {project.galleryImageUrls && project.galleryImageUrls.length > 0 && (
               <div className="mt-10 pt-8 border-t border-border">
@@ -120,12 +122,3 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
     </div>
   );
 }
-
-// Optional: Add generateStaticParams for better performance if your project list is static
-// export async function generateStaticParams() {
-//   return projects.map((project) => ({
-//     id: project.id,
-//   }));
-// }
-
-    
