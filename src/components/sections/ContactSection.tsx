@@ -16,7 +16,7 @@ import { submitContactForm, type ContactFormState } from '@/actions/contact';
 import { socialLinks, contactDetails } from '@/lib/data';
 import { Mail, MapPin, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-
+ 
 
 // function SubmitButton() {
 //   const { pending } = useFormStatus();
